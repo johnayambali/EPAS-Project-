@@ -4,13 +4,37 @@ postedProject = [
     {
         'professor': 'Daniel Amyot',
         'title': 'epas',
-        'descrption': 'description of the project',
+        'description': 'description of the project',
         'date_posted': 'Febuary 3rd 2022'
     },
     {
         'professor': 'Amy Felty',
         'title': 'software develpment',
-        'descrption': 'description of the project',
+        'description': 'description of the project',
+        'date_posted': 'Febuary 1st 2022'
+    },
+    {
+        'professor': 'Amy Felty',
+        'title': 'software development',
+        'description': 'description of the project',
+        'date_posted': 'Febuary 1st 2022'
+    },
+    {
+        'professor': 'Amy Felty',
+        'title': 'software development',
+        'description': 'description of the project',
+        'date_posted': 'Febuary 1st 2022'
+    },
+    {
+        'professor': 'Amy Felty',
+        'title': 'software development',
+        'description': 'description of the project',
+        'date_posted': 'Febuary 1st 2022'
+    },
+    {
+        'professor': 'Amy Felty',
+        'title': 'software development',
+        'description': 'description of the project',
         'date_posted': 'Febuary 1st 2022'
     },
 ]
@@ -24,4 +48,7 @@ def home(request):
 
 def profile(request):
     return render(request, 'projectListing/profile.html', {'title': 'Profile'})
+
+def applications(request):
+    return render(request, 'projectListing/applications.html', {'title' : 'Applications'})
 
