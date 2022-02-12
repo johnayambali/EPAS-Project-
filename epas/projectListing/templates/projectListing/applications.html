@@ -10,7 +10,17 @@
                     <h2 class="card-title">{{ post.title }}</h2>
                     <h5 class="card-subtitle mb-2 text-muted">>By {{ post.professor }} on {{ post.date_applied}}</h3>
                     <p class="card-text">{{ post.description }}</p>
-                    <button type="button" class="btn btn-outline-danger">{{ post.status }}</button>
+                    <td>
+                        {% if post.status == "Accepted" %}
+                        <button type="button" class="btn btn-outline-success">
+                        {% elif post.status == "Denied" %}
+                        <button type="button" class="btn btn-outline-danger">
+                        {% else %}
+                        <button type="button" class="btn btn-outline-warning">
+                        {% endif %}
+                            {{ post.status }}
+                        </button> 
+                    </td>
                     <br><br>
                     <a href="#" class="card-link">View Application</a>
                 </div>
