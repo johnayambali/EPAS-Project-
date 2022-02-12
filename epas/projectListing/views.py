@@ -49,6 +49,9 @@ def home(request):
 def profile(request):
     return render(request, 'projectListing/profile.html', {'title': 'Profile'})
 
+def myprojects(request):
+    return render(request, 'projectListing/myprojects.html', {'title': 'My Projects'})
+
 def applications(request):
     return render(request, 'projectListing/applications.html', {'title' : 'Applications'})
 
