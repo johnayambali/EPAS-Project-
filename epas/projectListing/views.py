@@ -1,5 +1,7 @@
+from http.client import HTTPResponse
 from django.shortcuts import render
 from .models import Post
+from .forms import CreateNewProject 
 
 projectApplications = [
     {
@@ -57,6 +59,10 @@ myProjects = [
     },
 ]
 
+def index(request, id):
+    ls = Post.objects.get(id=id)
+    return render(request, 'projectListing/index.html', {'ls':ls})
+
 def home(request):
     context = {
         'postedProject': Post.objects.all()
@@ -83,4 +89,20 @@ def projectapplication(request):
 
 def projectapply(request):
     return render(request, 'projectListing/projectapply.html', {'title': 'Profile'})
+
+def addProject(request):
+    if request.method == "POST":
+        form = CreateNewProject(request.POST)
+        if form.is_valid():
+            n = form.cleaned_data["title"]
+            t = Post(title=n)
+            t.save
+
+        return HTTPResponse('/%i' %t.id)
+    else:
+        form = CreateNewProject()
+    return render(request, 'projectListing/addProject.html', {'form': form})
+
+
+
 

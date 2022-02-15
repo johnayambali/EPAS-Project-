@@ -1,7 +1,7 @@
 {% extends "projectListing/base.html" %}
 {% block content %}
 <br>
-<button type="button" class="btn btn-primary">Add Project</button>
+<button type="button" class="btn btn-primary" href="/addProject">Add Project</button>
     <h1>List of Projects</h1>    <br>
     <div class="card-deck">
         {% for post in postedProject %}

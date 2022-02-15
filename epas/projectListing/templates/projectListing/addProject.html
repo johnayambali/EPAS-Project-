@@ -1,0 +1,10 @@
+{% extends "projectListing/base.html" %}
+{% block content %}
+<br>
+    <h1>Add Project</h1>
+    <form method="post">
+        {% csrf_token %}
+        {{form.as_p}}
+        <button tpye="submit", name="save">Create New</button>
+    </form>
+{% endblock content %}

@@ -6,5 +6,6 @@ urlpatterns = [
     path('profile/', views.profile, name='projectListing-profile'),
     path('myprojects/', views.myprojects, name='projectListing-myprojects'),
     path('applications/', views.applications, name='projectListing-applications'),
+    path('addProject/', views.addProject, name='projectListing-addProject'),
 ]
 
