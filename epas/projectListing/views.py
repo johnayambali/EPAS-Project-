@@ -1,5 +1,9 @@
+from gc import get_objects
 from django.shortcuts import render
 from .models import Post
+from django.views.generic import CreateView, ListView, DetailView, UpdateView, DeleteView
+from django.contrib.auth.mixins import UserPassesTestMixin
+
 
 projectApplications = [
     {
@@ -84,3 +88,45 @@ def projectapplication(request):
 def projectapply(request):
     return render(request, 'projectListing/projectapply.html', {'title': 'Profile'})
 
+class PostListView(ListView):
+    model = Post
+    template_name = 'projectListing/home.html'
+    context_object_name = 'postedProject'
+    ordering = ['-date_posted']
+
+class PostDetailView(DetailView):
+    model = Post
+    
+
+class PostCreateView(CreateView):
+    model = Post
+    fields = ['title', 'description']
+
+    def form_valid(self, form):
+        form.instance.professor = self.request.user
+        return super().form_valid(form)
+
+
+class PostUpdateView(UserPassesTestMixin, UpdateView):
+    model = Post
+    fields = ['title', 'description']
+
+    def form_valid(self, form):
+        form.instance.professor = self.request.user
+        return super().form_valid(form)
+
+    def test_func(self):
+        post = self.get_object()
+        if self.request.user == post.professor:
+            return True
+        return False
+
+class PostDeleteView(UserPassesTestMixin, DeleteView):
+    model = Post
+    success_url = '/'
+
+    def test_func(self):
+        post = self.get_object()
+        if self.request.user == post.professor:
+            return True
+        return False
