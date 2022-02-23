@@ -97,12 +97,22 @@ class ProgramDirector(User):
 
 
 
+#I added new fields to post to reflect ER & Added Application and MyDocuments Tables
+
 
 class Post(models.Model):
     title = models.CharField(max_length=100)
     description = models.TextField()
     date_posted = models.DateField(default=timezone.now)
     professor = models.ForeignKey(User, on_delete=models.CASCADE)
+    desiredNumStudents = models.IntegerField()
+    maxNumStudents = models.IntegerField()
+    minTermLength = models.IntegerField()
+    maxTermLength = models.IntegerField()
+    relatedProgram = models.CharField(max_length=100)
+    course = models.CharField(max_length=100, default="null")
+    active = models.BooleanField(default=False)
+    isApproved = models.BooleanField()
 
     def __str__(self):
         return self.title
@@ -111,5 +121,22 @@ class Post(models.Model):
         return reverse("post-detail", kwargs={"pk": self.pk})
     
 
+class Application(models.Model):
+    student = models.ForeignKey(User, on_delete=models.CASCADE)
+    project = models.ForeignKey(Post, on_delete=models.CASCADE)
+    appDetails = models.TextField()
+
+    def __str__(self):
+        return f'Application from {self.student}'
+
+
+class MyDocuments(models.Model):
+    student = models.OneToOneField(User, on_delete=models.CASCADE)
+    resumeFile = models.FileField()
+    transcriptFile = models.FileField()
+    linkedinURl = models.URLField()
+
+    def __str__(self):
+        return f'Documents from {self.student}'
 
 
