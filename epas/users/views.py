@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 from django.contrib import messages
 from django.contrib.auth import login, authenticate, logout
+from django.contrib.auth.decorators import login_required
 from  users.forms import RegistrationForm
 
 # Create your views here.
@@ -17,9 +18,8 @@ def registration_view(request):
             username = form.cleaned_data.get('username')
             raw_password = form.cleaned_data.get('password1')
             type = form.cleaned_data.get('type')
-            messages.success(request, f'Your account has been created! Welcome {username}')
-
-            return redirect('projectListing-home')
+            messages.success(request, f'Your account has been created! You are now able to login')
+            return redirect('login')
         '''else:
             context['registration_form'] = form'''
 
@@ -27,3 +27,7 @@ def registration_view(request):
         form = RegistrationForm()
         #context['registration_form'] = form
     return render(request, 'users/register.html', {'form': form})
+
+@login_required
+def profile(request):
+    return render(request, 'users/profile.html')

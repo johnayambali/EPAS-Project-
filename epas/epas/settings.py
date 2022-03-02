@@ -128,3 +128,7 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 AUTH_USER_MODEL = 'projectListing.User'
 
 CRISPY_TEMPLATE_PACK ='bootstrap4'
+
+LOGIN_URL ='login'
+
+LOGIN_REDIRECT_URL = 'projectListing-home'
