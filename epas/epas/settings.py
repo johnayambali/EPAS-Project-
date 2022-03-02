@@ -32,10 +32,12 @@ ALLOWED_HOSTS = []
 
 INSTALLED_APPS = [
     'projectListing.apps.ProjectlistingConfig',
+    'users.apps.UsersConfig',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
+    'crispy_forms',
     'django.contrib.messages',
     'django.contrib.staticfiles',
 ]
@@ -124,3 +126,5 @@ STATIC_URL = 'static/'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 AUTH_USER_MODEL = 'projectListing.User'
+
+CRISPY_TEMPLATE_PACK ='bootstrap4'
