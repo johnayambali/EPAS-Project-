@@ -1,0 +1,17 @@
+{% extends "projectListing/base.html" %}
+{% block content %}
+    <div class="content-secition">
+        <form method="POST">
+            {% csrf_token %}
+            <fieldset class="form-group">
+                <br>
+                <h1>Project Information</h1>
+                <br>
+                {{ form.as_p }}
+            </fieldset>
+            <div class="form-group">
+                <button class="btn btn-outline-info" type="submit" href="{% url 'post-detail' object.id %}">Apply</button>
+            </div>
+        </form>
+    </div>
+{% endblock content %}
