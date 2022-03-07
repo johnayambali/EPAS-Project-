@@ -125,9 +125,11 @@ class Application(models.Model):
     student = models.ForeignKey(User, on_delete=models.CASCADE)
     project = models.ForeignKey(Post, on_delete=models.CASCADE)
     appDetails = models.TextField()
-
     def __str__(self):
         return f'Application from {self.student}'
+
+    def get_absolute_url(self):
+        return reverse("application-detail", kwargs={"pk": self.project.pk})
 
 
 class MyDocuments(models.Model):

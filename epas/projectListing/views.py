@@ -1,6 +1,7 @@
 from gc import get_objects
 from django.shortcuts import render
 from .models import Post
+from .models import Application
 from django.views.generic import CreateView, ListView, DetailView, UpdateView, DeleteView
 from django.contrib.auth.mixins import UserPassesTestMixin
 
@@ -78,7 +79,7 @@ def myprojects(request):
 
 def applications(request):
     context = {
-        'projectApplications': projectApplications
+        'appliedProject': Application.objects.all()
     }
     return render(request, 'projectListing/applications.html', context)
 
@@ -128,5 +129,48 @@ class PostDeleteView(UserPassesTestMixin, DeleteView):
     def test_func(self):
         post = self.get_object()
         if self.request.user == post.professor:
+            return True
+        return False
+
+
+class ApplicationListView(ListView):
+    model = Application
+    template_name = 'projectListing/applications.html'
+    context_object_name = 'appliedProject'
+    ordering = ['-date_posted']
+
+class ApplicationDetailView(DetailView):
+    model = Application
+    
+
+class ApplicationCreateView(CreateView):
+    model = Application
+    success_url = '/'
+
+    def form_valid(self, form):
+        form.instance.student = self.request.user
+        return super().form_valid(form)
+
+class ApplicationUpdateView(UserPassesTestMixin, UpdateView):
+    model = Post
+    fields = ['status']
+
+    def form_valid(self, form):
+        form.instance.professor = self.request.user
+        return super().form_valid(form)
+
+    def test_func(self):
+        post = self.get_object()
+        if self.request.user == post.professor:
+            return True
+        return False
+
+class ApplicationDeleteView(UserPassesTestMixin, DeleteView):
+    model = Post
+    success_url = '/'
+
+    def test_func(self):
+        post = self.get_object()
+        if self.request.user == post.student:
             return True
         return False

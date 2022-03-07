@@ -4,15 +4,15 @@
     <h1>Applications</h1>
     <br>
     <div class="card-deck">
-        {% for post in projectApplications %}
+        {% for post in appliedProject %}
         
             
             <div class="card" style="min-width: 80%; max-width: 80%; margin-bottom: 2rem;"> 
                 <div class="card-body">
-                    <h2 class="card-title">{{ post.title }}</h2>
-                    <h5 class="card-subtitle mb-2 text-muted">Supervised by: {{ post.professor }}</h3>
-                    <h6 class="card-subtitle mb-2 text-muted">Posted on: {{ post.date_applied }}</h3>
-                    <p class="card-text">{{ post.description }}</p>
+                    <h2 class="card-title">{{ post.project.title }}</h2>
+                    <h5 class="card-subtitle mb-2 text-muted">Supervised by: {{ post.project.professor }}</h3>
+                    <h6 class="card-subtitle mb-2 text-muted">Posted on: {{ post.project.date_applied }}</h3>
+                    <p class="card-text">{{ post.project.description }}</p>
                     <td>
                         {% if post.status == "Accepted" %}
                         <button type="button" class="btn btn-outline-success">
@@ -25,7 +25,7 @@
                         </button> 
                     </td>
                     <br><br>
-                    <a href="#" class="card-link">View Application</a>
+                    <a href="{% url 'application-detail' post.id %}" class="card-link">View Application</a>
                 </div>
             </div>
     
