@@ -62,6 +62,17 @@ myProjects = [
     },
 ]
 
+profMyProjects = [
+    {
+        'course': 'CSI4900',
+        'professor': 'Amy Felty',
+        'title': 'Software development',
+        'description': 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam posuere convallis mi. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Maecenas non leo at enim porttitor mattis sit amet elementum nisl. Suspendisse dictum ipsum eu erat faucibus vestibulum. Ut tincidunt sit amet justo nec tempus. Fusce at interdum sem, sit amet volutpat odio. Nunc dignissim lacus eu est aliquet, et tempor purus accumsan. Proin finibus porta commodo. Ut congue sodales massa at malesuada. Mauris a ligula nec risus tristique volutpat. Etiam sed nisi interdum, euismod arcu nec, pellentesque nisi. Suspendisse ac malesuada diam. Quisque a sagittis ex, eget eleifend arcu. Phasellus a arcu odio. Proin cursus, lacus et cursus gravida, dui libero tincidunt est, ac varius quam tortor et nulla.',
+        'semester': 'Fall 2022',
+        'status': 'Accepted'
+    },
+]
+
 def home(request):
     context = {
         'postedProject': Post.objects.all()
@@ -88,6 +99,18 @@ def projectapplication(request):
 
 def projectapply(request):
     return render(request, 'projectListing/projectapply.html', {'title': 'Profile'})
+
+def profprofile(request):
+    return render(request, 'projectListing/prof_profile.html', {'title': 'Profile'})
+
+def profmyprojects(request):
+    return render(request, 'projectListing/prof_myprojects.html', {'title': 'Profile'})
+
+def profmyactiveprojects(request):
+    return render(request, 'projectListing/prof_myactiveprojects.html', {'title': 'Profile'})
+
+def profprojectapplications(request):
+    return render(request, 'projectListing/prof_projectapplications.html', {'title': 'Profile'})
 
 class PostListView(ListView):
     model = Post

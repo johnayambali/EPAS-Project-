@@ -8,7 +8,7 @@
                     <h6 class="card-subtitle mb-2 text-muted">Posted on: {{ object.date_posted }}</h3>
                     <h6 class="card-subtitle mb-2 text-muted">Number of students: {{ object.num_students}}</h3>
                     <p class="card-text">{{ object.description }}</p>
-                    {% if object.user == student %}
+                    {% if object.user.type == student %}
                     <button class="btn btn-outline-info" type="submit" href="{% url 'application-create'%}">Apply</button>
                     {% endif %}
                 </div>
