@@ -26,33 +26,35 @@
         	<div class="collapse navbar-collapse" id="navbarSupportedContent">
           		<ul class="navbar-nav mr-auto">
 					{% if user.is_authenticated %}
-					<li class="nav-item {% if request.path == "/" %}active{% endif %}">
-						<a class="nav-link" href="/">Find Projects</a>
-					</li>
-					<li class="nav-item {% if request.path == "/applications/" %}active{% endif %}">
-						<a class="nav-link" href="/applications">My Applications</a>
-					</li>
-					<li class="nav-item {% if request.path == "/myprojects/" %}active{% endif %}">
-						<a class="nav-link" href="/myprojects">My Projects</a>
-					</li>
-					<li class="nav-item {% if request.path == "/profile/" %}active{% endif %}">
-						<a class="nav-link" href="/profile">My Profile</a>
-					</li>
-					<!--Login/signup views
-					{% else if user.type == professor%}
+						{% if user.type == "STUDENT" %}
+							<li class="nav-item {% if request.path == "/" %}active{% endif %}">
+								<a class="nav-link" href="/">Posted Projects</a>
+							</li>
+							<li class="nav-item {% if request.path == "/applications/" %}active{% endif %}">
+								<a class="nav-link" href="/applications">My Applications</a>
+							</li>
+							<li class="nav-item {% if request.path == "/myprojects/" %}active{% endif %}">
+								<a class="nav-link" href="/myprojects">My Projects</a>
+							</li>
+							<li class="nav-item {% if request.path == "/profile/" %}active{% endif %}">
+								<a class="nav-link" href="/profile">My Profile</a>
+							</li>
+					<!--Login/signup views -->
+						{% else %} 
 
-					<li class="nav-item {% if request.path == "/" %}active{% endif %}">
-						<a class="nav-link" href="/profmyprojects">Posted Projects</a>
-					</li>
-					<li class="nav-item {% if request.path == "/profprojectapplications/" %}active{% endif %}">
-						<a class="nav-link" href="/profprojectapplications">Project Applications</a>
-					</li>
-					<li class="nav-item {% if request.path == "/profactiveprojects/" %}active{% endif %}">
-						<a class="nav-link" href="/profactiveprojects">My Current Projects</a>
-					</li>
-					<li class="nav-item {% if request.path == "/profprofile/" %}active{% endif %}">
-						<a class="nav-link" href="/profprofile">My Profile</a>
-					</li> -->
+							<li class="nav-item {% if request.path == "/" %}active{% endif %}">
+								<a class="nav-link" href="/profmyprojects">Posted Projects</a>
+							</li>
+							<li class="nav-item {% if request.path == "/profprojectapplications/" %}active{% endif %}">
+								<a class="nav-link" href="/profprojectapplications">Project Applications</a>
+							</li>
+							<li class="nav-item {% if request.path == "/profactiveprojects/" %}active{% endif %}">
+								<a class="nav-link" href="/profactiveprojects">My Current Projects</a>
+							</li>
+							<li class="nav-item {% if request.path == "/profprofile/" %}active{% endif %}">
+								<a class="nav-link" href="/profprofile">My Profile</a>
+							</li> -->
+						{% endif %}
 
 					{% else %}
 					<li class="nav-item {% if request.path == "/" %}active{% endif %}">
