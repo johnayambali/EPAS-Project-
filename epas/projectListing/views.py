@@ -106,7 +106,7 @@ def profprofile(request):
 def profmyprojects(request):
     return render(request, 'projectListing/prof_myprojects.html', {'title': 'Profile'})
 
-def profmyactiveprojects(request):
+def profactiveprojects(request):
     return render(request, 'projectListing/prof_myactiveprojects.html', {'title': 'Profile'})
 
 def profprojectapplications(request):
