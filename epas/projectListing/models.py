@@ -1,4 +1,5 @@
 from django.db import models
+from django.forms import ModelForm
 from django.utils import timezone
 from django.contrib.auth.models import AbstractUser
 from django.contrib.auth.models import User
@@ -51,6 +52,7 @@ class Professor(User):
         if not self.pk:
             self.type = User.Types.PROFESSOR
         return super().save(*args, **kwargs)
+
 
 
 class CorporateManager(models.Manager):
@@ -140,5 +142,8 @@ class MyDocuments(models.Model):
 
     def __str__(self):
         return f'Documents from {self.student}'
+
+
+
 
 

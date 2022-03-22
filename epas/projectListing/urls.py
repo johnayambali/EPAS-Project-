@@ -7,10 +7,6 @@ urlpatterns = [
     path('profile/', views.profile, name='projectListing-profile'),
     path('myprojects/', views.myprojects, name='projectListing-myprojects'),
     path('applications/', views.applications, name='projectListing-applications'),
-    path('profmyprojects/', views.profmyprojects, name='projectListing-myprojects'),
-    path('profprofile/', views.profprofile, name='projectListing-profile'),
-    path('profactiveprojects/', views.profactiveprojects, name='projectListing-myprojects'),
-    path('profprojectapplications/', views.profprojectapplications, name='projectListing-applications'),
     path('post/new/', PostCreateView.as_view(), name='post-create'),
     path('post/<int:pk>/', PostDetailView.as_view(), name='post-detail'),
     path('post/<int:pk>/update', PostUpdateView.as_view(), name='post-update'),
@@ -19,5 +15,11 @@ urlpatterns = [
     path('post/<int:pk>/', ApplicationDetailView.as_view(), name='application-detail'),
     path('application/<int:pk>/update', ApplicationUpdateView.as_view(), name='application-update'),
     path('application/<int:pk>/delete', ApplicationDeleteView.as_view(), name='application-delete'),
+    path('profmyprojects/', views.profmyprojects, name='projectListing-prof_myprojects'),
+    path('profprojectapplications/', views.profprojectapplications, name='projectListing-prof_projectapplication'),
+    path('profactiveprojects/', views.profmyactiveprojects, name='projectListing-prof_myactiveprojects'),
+    path('profprofile/', views.profprofile, name='projectListing-prof_profile'),
+    
+    
 ]
 

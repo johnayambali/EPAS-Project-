@@ -4,6 +4,9 @@ from .models import Post
 from .models import Application
 from django.views.generic import CreateView, ListView, DetailView, UpdateView, DeleteView
 from django.contrib.auth.mixins import UserPassesTestMixin
+from django.http import HttpResponseRedirect
+from django.shortcuts import render
+from .forms import PostForm
 
 
 projectApplications = [
@@ -100,14 +103,18 @@ def projectapplication(request):
 def projectapply(request):
     return render(request, 'projectListing/projectapply.html', {'title': 'Profile'})
 
+
 def profprofile(request):
     return render(request, 'projectListing/prof_profile.html', {'title': 'Profile'})
 
 def profmyprojects(request):
     return render(request, 'projectListing/prof_myprojects.html', {'title': 'Profile'})
 
-def profactiveprojects(request):
-    return render(request, 'projectListing/prof_myactiveprojects.html', {'title': 'Profile'})
+def profmyactiveprojects(request):
+    context = {
+        'postedProject': Post.objects.all()
+    }
+    return render(request, 'projectListing/prof_myactiveprojects.html', context)
 
 def profprojectapplications(request):
     return render(request, 'projectListing/prof_projectapplications.html', {'title': 'Profile'})
@@ -124,7 +131,8 @@ class PostDetailView(DetailView):
 
 class PostCreateView(CreateView):
     model = Post
-    fields = ['title', 'description']
+    fields = ['title', 'description', 'date_posted', 'professor', 'desiredNumStudents', 'maxNumStudents', 'minTermLength', 'maxTermLength', 'relatedProgram', 'course', 'active', 'isApproved']
+
 
     def form_valid(self, form):
         form.instance.professor = self.request.user
@@ -133,7 +141,7 @@ class PostCreateView(CreateView):
 
 class PostUpdateView(UserPassesTestMixin, UpdateView):
     model = Post
-    fields = ['title', 'description']
+    fields = ['title', 'description', 'date_posted', 'professor', 'desiredNumStudents', 'maxNumStudents', 'minTermLength', 'maxTermLength', 'relatedProgram', 'course', 'active', 'isApproved']
 
     def form_valid(self, form):
         form.instance.professor = self.request.user
@@ -197,3 +205,6 @@ class ApplicationDeleteView(UserPassesTestMixin, DeleteView):
         if self.request.user == post.student:
             return True
         return False
+
+
+
