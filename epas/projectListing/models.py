@@ -15,6 +15,10 @@ class User(AbstractUser):
 
     #fields
     type = models.CharField(max_length=50, choices=Types.choices, default=Types.STUDENT)
+  
+
+    def __str__(self):
+        return self.username
 
 
 #ProxyModels for the different types of users. It inherits User class
@@ -52,6 +56,8 @@ class Professor(User):
         if not self.pk:
             self.type = User.Types.PROFESSOR
         return super().save(*args, **kwargs)
+
+    
 
 
 
@@ -126,6 +132,7 @@ class Post(models.Model):
 class Application(models.Model):
     student = models.ForeignKey(User, on_delete=models.CASCADE)
     project = models.ForeignKey(Post, on_delete=models.CASCADE)
+    
     appDetails = models.TextField()
     def __str__(self):
         return f'Application from {self.student}'

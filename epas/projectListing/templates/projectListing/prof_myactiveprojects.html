@@ -4,13 +4,7 @@
 
 
     {% for post in postedProject %}
-    <h1>FIRST {{ post.professor }} , {{ request.user.username }}</h1>
-        {% if post.professor == request.user.username %}
-        <h1>SECOND {{ post.professor }} , {{ request.user.username }}</h1>
-
-        
-
-
+        {% if post.professor.username == request.user.username %}
         <div class="card" style="min-width: 80%; max-width: 80%; margin-bottom: 2rem;"> 
             <div class="card-body">
                 <h2 class="card-title">{{ post.title }}</h2>
@@ -23,6 +17,5 @@
         </div>
         {% endif %}
     {% endfor %}
-    <h1>{{ request.user.username }} , hello</h1>
 {% endblock content %}
        

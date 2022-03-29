@@ -117,7 +117,10 @@ def profmyactiveprojects(request):
     return render(request, 'projectListing/prof_myactiveprojects.html', context)
 
 def profprojectapplications(request):
-    return render(request, 'projectListing/prof_projectapplications.html', {'title': 'Profile'})
+    context = {
+        'appliedProject': Application.objects.all()
+    }
+    return render(request, 'projectListing/prof_projectapplications.html', context)
 
 class PostListView(ListView):
     model = Post

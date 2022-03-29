@@ -1,22 +1,8 @@
 {% extends "projectListing/base.html" %}
 {% block content %}
 <br>
-    <h1>My Projects</h1>
-    <br>
+    <h1>List of Projects</h1>    <br>
     <div class="card-deck">
-        {% for post in myProjects %}
         
-            
-            <div class="card" style="min-width: 80%; max-width: 80%; margin-bottom: 2rem;"> 
-                <div class="card-body">
-                    <h2 class="card-title">{{ post.title }}</h2>
-                    <h5 class="card-subtitle mb-2 text-muted">Supervised by: {{ post.professor }}</h3>
-                        <h6 class="card-subtitle mb-2 text-muted">Semester: {{ post.semester }}</h3>
-                    <p class="card-text">{{ post.description }}</p>
-                    <a href="#" class="card-link" >View Project</a>
-                </div>
-            </div>
-    
-        {% endfor %}
     <div>
 {% endblock content %}
