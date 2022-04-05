@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+  <head>
+
+
+     <!-- Required meta tags -->
+	  <meta charset="utf-8">
+	  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+	  <!-- Bootstrap CSS -->
+	  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+	  {% if title %}
+			  <title>EPAS - {{ title }}</title>
+	  	{% else %}
+	  		<title>EPAS</title>
+	  {% endif %}
+
+  </head>
+  <body>
+
+    <div class="wrapper">
+    	<nav id="navigationbar" class="navbar navbar-expand-lg navbar-dark bg-primary">
+        	<a class="navbar-brand" href="#">EPAS</a>
+        
+        	<div class="collapse navbar-collapse" id="navbarSupportedContent">
+          		<ul class="navbar-nav mr-auto">
+					{% if user.is_authenticated %}
+						{% if user.type == "STUDENT" %}
+							<li class="nav-item {% if request.path == "/" %}active{% endif %}">
+								<a class="nav-link" href="/">Posted Projects</a>
+							</li>
+							<li class="nav-item {% if request.path == "/applications/" %}active{% endif %}">
+								<a class="nav-link" href="/applications">My Applications</a>
+							</li>
+							<li class="nav-item {% if request.path == "/myprojects/" %}active{% endif %}">
+								<a class="nav-link" href="/myprojects">My Projects</a>
+							</li>
+							<li class="nav-item {% if request.path == "/profile/" %}active{% endif %}">
+								<a class="nav-link" href="/profile">My Profile</a>
+							</li>
+					<!--Login/signup views -->
+						{% else %} 
+
+							<li class="nav-item {% if request.path == "/" %}active{% endif %}">
+								<a class="nav-link" href="/">Posted Projects</a>
+							</li>
+							<li class="nav-item {% if request.path == "/profprojectapplications/" %}active{% endif %}">
+								<a class="nav-link" href="/profprojectapplications">Project Applications</a>
+							</li>
+							<li class="nav-item {% if request.path == "/profactiveprojects/" %}active{% endif %}">
+								<a class="nav-link" href="/profactiveprojects">My Current Projects</a>
+							</li>
+							<li class="nav-item {% if request.path == "/profprofile/" %}active{% endif %}">
+								<a class="nav-link" href="/profprofile">My Profile</a>
+							</li> -->
+						{% endif %}
+
+					{% else %}
+					<li class="nav-item {% if request.path == "/" %}active{% endif %}">
+						<a class="nav-link" href="/">Find Projects</a>
+					</li>
+					{% endif %}
+
+          		</ul>
+				<!--Login/signup views-->
+          		<div class="navbar-nav">
+						{% if user.is_authenticated %}
+							{% if user.type != "STUDENT" %}
+								<a class=" nav-item nav-link" href="{% url 'post-create' %}">Add Project</a>
+							{% endif %}
+							<a class=" nav-item nav-link" href="{% url 'profile' %}">Profile</a>
+							<a class="nav-item nav-link" href="{% url 'logout' %}">Log Out</a>
+							
+
+						{% else %}
+							<a class="nav-item nav-link" href="{% url 'login' %}">Login</a>
+							<a class="nav-item nav-link" href="{% url 'register' %}">Sign Up</a>
+
+						{% endif %}
+
+           			</li>
+          		</div>
+          
+        	</div>
+      	</nav>
+
+    	<nav id="sidebar">
+			<!-- Sidebar content -->
+
+		</nav>
+
+
+
+      	<div id="content">
+            <div class="container">
+				{% if messages %}
+					{% for message in messages %}
+						<div class ='alert alert-{{ message.tags }}'>
+							{{ message }}
+						</div>
+					{% endfor %}
+				{% endif %}
+                {% block content %} {% endblock %}
+            </div>
+      	</div>
+    </div>
+
+    
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+
+  </body>
+</html>
