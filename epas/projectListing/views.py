@@ -82,6 +82,13 @@ def home(request):
     }
     return render(request, 'projectListing/home.html', context)
 
+def homeDirector(request):
+    context = {
+        'postedProject': Post.objects.all()
+    }
+    return render(request, 'projectListing/home_director.html', context)
+
+
 def profile(request):
     return render(request, 'projectListing/profile.html', {'title': 'Profile'})
 

@@ -120,7 +120,7 @@ class Post(models.Model):
     relatedProgram = models.CharField(max_length=100)
     course = models.CharField(max_length=100, default="null")
     active = models.BooleanField(default=False)
-    isApproved = models.BooleanField()
+    isApproved = models.BooleanField(default=False)
 
     def __str__(self):
         return self.title

@@ -1,7 +1,7 @@
 {% extends "projectListing/base.html" %}
 {% block content %}
 <br>
-    <h1>List of Projects</h1>    <br>
+    <h1>List of Projects Waiting for Approval</h1>    <br>
     <div class="card-deck">
         {% for post in postedProject %}
             {% if post.isApproved != true %}
