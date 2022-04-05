@@ -14,7 +14,7 @@
                 </div>
             </div> 
 
-            {% if object.professor == user %}
+            {% if user.type == "PROFESSOR" %}
                 <a class="btn btn-secondary btn-sm mt-1 mb-1" href="{% url 'post-update' object.id %}">Update Project</a>
                 <a class="btn btn-danger btn-sm mt-1 mb-1" href="{% url 'post-delete' object.id %}">Delete Project</a>
             {% endif %}
