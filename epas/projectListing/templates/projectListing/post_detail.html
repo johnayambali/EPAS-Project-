@@ -4,17 +4,40 @@
             <div class="card" style="min-width: 80%; max-width: 80%; margin-bottom: 2rem;"> 
                 <div class="card-body">
                     <h2 class="card-title">{{ object.title }}</h2>
-                    <h5 class="card-subtitle mb-2 text-muted">Supervised by: {{ object.professor }}</h3>
+                    <h5 class="card-subtitle mb-2 text-muted">Supervised by: HELLO {{ object.professor }}</h3>
                     <h6 class="card-subtitle mb-2 text-muted">Posted on: {{ object.date_posted }}</h3>
                     <h6 class="card-subtitle mb-2 text-muted">Number of students: {{ object.num_students}}</h3> 
-                    <p class="card-text">{{ object.description }}</p>
-                    {% if object.student == user %}
-                        <button class="btn btn-outline-info" type="submit" href="{% url 'application-create'%}">Apply</button>
+                    <p class="card-text">{{ object.description }} {{ object.professor }}</p>
+                    {% if user.type == "STUDENT" %}
+                        <form action="{% url 'createapplication2' %}" method="post">
+                            {% csrf_token %}
+                        
+                        
+                            <button type="submit" name='mybtn2'>Download results in Excel</button>
+                         </form>
+                        
+
+
+
+
+
+                        <form method="POST">
+                            {% csrf_token %}
+                            <input type="hidden" name="student" value={{ request.user.username }}/>
+                            <input type="hidden" name="project" value={{ object.title }}/>
+                            <input type="hidden" name="projectID" value=3/>
+                            <input type="hidden" name="appDetails" value={{ request.user.username }}/>
+
+                            <div class="form-group">
+                                <button class="btn btn-outline-info" type="submit" href="{% url 'application-create'%}" value="Application">Apply</button>
+                            </div>
+                        </form>
+                        
                     {% endif %}
                 </div>
             </div> 
 
-            {% if object.professor == user %}
+            {% if user.type == "PROFESSOR" %}
                 <a class="btn btn-secondary btn-sm mt-1 mb-1" href="{% url 'post-update' object.id %}">Update Project</a>
                 <a class="btn btn-danger btn-sm mt-1 mb-1" href="{% url 'post-delete' object.id %}">Delete Project</a>
             {% endif %}

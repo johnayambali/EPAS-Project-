@@ -120,7 +120,7 @@ class Post(models.Model):
     relatedProgram = models.CharField(max_length=100)
     course = models.CharField(max_length=100, default="null")
     active = models.BooleanField(default=False)
-    isApproved = models.BooleanField()
+    isApproved = models.BooleanField(default=False)
 
     def __str__(self):
         return self.title
@@ -132,7 +132,7 @@ class Post(models.Model):
 class Application(models.Model):
     student = models.ForeignKey(User, on_delete=models.CASCADE)
     project = models.ForeignKey(Post, on_delete=models.CASCADE)
-    
+    projectID = models.IntegerField(default=-1)
     appDetails = models.TextField()
     def __str__(self):
         return f'Application from {self.student}'

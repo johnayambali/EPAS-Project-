@@ -19,6 +19,7 @@ urlpatterns = [
     path('profprojectapplications/', views.profprojectapplications, name='projectListing-prof_projectapplication'),
     path('profactiveprojects/', views.profmyactiveprojects, name='projectListing-prof_myactiveprojects'),
     path('profprofile/', views.profprofile, name='projectListing-prof_profile'),
+    path('profile/',views.createapplication2,name="createapplication2"),
     
     
 ]
