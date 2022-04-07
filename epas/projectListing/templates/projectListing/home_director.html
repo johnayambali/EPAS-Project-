@@ -1,11 +1,11 @@
 {% extends "projectListing/base.html" %}
 {% block content %}
 <br>
-    <h1>List of Projects</h1>    <br>
+    <h1>List of Projects Waiting for Approval</h1>    <br>
     <div class="card-deck">
             {% for post in postedProject %}
             
-                {% if post.isApproved is True %}
+                {% if post.isApproved is False %}
                 <div class="card" style="min-width: 80%; max-width: 80%; margin-bottom: 2rem;"> 
                     <div class="card-body">
                         <h2 class="card-title">{{ post.title }}</h2>

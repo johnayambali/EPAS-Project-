@@ -7,6 +7,7 @@ from django.contrib.auth.mixins import UserPassesTestMixin
 from django.http import HttpResponseRedirect
 from django.shortcuts import render
 from .forms import PostForm
+from django.shortcuts import redirect
 
 
 projectApplications = [
@@ -81,6 +82,14 @@ def home(request):
         'postedProject': Post.objects.all()
     }
     return render(request, 'projectListing/home.html', context)
+
+def homeDirector(request):
+    context = {
+        'postedProject': Post.objects.all()
+    }
+    return render(request, 'projectListing/home_director.html', context)
+
+
 
 def profile(request):
     return render(request, 'projectListing/profile.html', {'title': 'Profile'})
@@ -174,7 +183,7 @@ class PostCreateView(CreateView):
 
 class PostUpdateView(UserPassesTestMixin, UpdateView):
     model = Post
-    fields = ['title', 'description', 'date_posted', 'professor', 'desiredNumStudents', 'maxNumStudents', 'minTermLength', 'maxTermLength', 'relatedProgram', 'course', 'active', 'isApproved']
+    fields = ['title', 'description', 'date_posted', 'professor', 'desiredNumStudents', 'maxNumStudents', 'minTermLength', 'maxTermLength', 'relatedProgram', 'course']
 
     def form_valid(self, form):
         form.instance.professor = self.request.user
@@ -182,7 +191,7 @@ class PostUpdateView(UserPassesTestMixin, UpdateView):
 
     def test_func(self):
         post = self.get_object()
-        if self.request.user == post.professor:
+        if self.request.user == post.professor or self.request.user.type == "PROGRAM_DIRECTOR":
             return True
         return False
 
@@ -236,6 +245,20 @@ class ApplicationDeleteView(UserPassesTestMixin, DeleteView):
     def test_func(self):
         post = self.get_object()
         if self.request.user == post.student:
+            return True
+        return False
+
+class UpdateApprovalView(UserPassesTestMixin, UpdateView):
+    model = Post
+    fields = ['isApproved']
+
+    def form_valid(self, form):
+        form.instance.professor = self.request.user
+        return super().form_valid(form)
+
+    def test_func(self):
+        post = self.get_object()
+        if self.request.user == post.professor or self.request.user.type == "PROGRAM_DIRECTOR":
             return True
         return False
 
