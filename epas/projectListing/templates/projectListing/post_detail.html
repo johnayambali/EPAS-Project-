@@ -38,7 +38,6 @@
             </div> 
 
             {% if user.type == "PROFESSOR" %}
-<<<<<<< HEAD
                 {% if user.username == object.professor.username %}
                     <a class="btn btn-secondary btn-sm mt-1 mb-1" href="{% url 'post-update' object.id %}">Update Project</a>
                     <a class="btn btn-danger btn-sm mt-1 mb-1" href="{% url 'post-delete' object.id %}">Delete Project</a>
@@ -54,10 +53,6 @@
             {% else %}
                 <a class="btn btn-secondary btn-sm mt-1 mb-1" href="{% url 'post-approval' object.id %}">Approve Project</a>
                 <a class="btn btn-danger btn-sm mt-1 mb-1" href="{% url 'post-delete' object.id %}">Disapprove Project</a>
-=======
-                <a class="btn btn-secondary btn-sm mt-1 mb-1" href="{% url 'post-update' object.id %}">Update Project</a>
-                <a class="btn btn-danger btn-sm mt-1 mb-1" href="{% url 'post-delete' object.id %}">Delete Project</a>
->>>>>>> main
             {% endif %}
         {% endif %}
 

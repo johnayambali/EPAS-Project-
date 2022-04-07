@@ -251,6 +251,7 @@ class ApplicationDeleteView(UserPassesTestMixin, DeleteView):
 class UpdateApprovalView(UserPassesTestMixin, UpdateView):
     model = Post
     fields = ['isApproved']
+    labels = {'isApproved': 'Approve'}
 
     def form_valid(self, form):
         form.instance.professor = self.request.user
