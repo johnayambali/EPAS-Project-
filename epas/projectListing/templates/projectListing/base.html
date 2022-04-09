@@ -36,9 +36,6 @@
 							<li class="nav-item {% if request.path == "/myprojects/" %}active{% endif %}">
 								<a class="nav-link" href="/myprojects">My Projects</a>
 							</li>
-							<li class="nav-item {% if request.path == "/profile/" %}active{% endif %}">
-								<a class="nav-link" href="/profile">My Profile</a>
-							</li>
 					<!--Login/signup views -->
 							{% elif user.type == "PROGRAM_DIRECTOR" %}
 							<li class="nav-item {% if request.path == "/approval/" %}active{% endif %}">
@@ -53,9 +50,6 @@
 							<li class="nav-item {% if request.path == "/profactiveprojects/" %}active{% endif %}">
 								<a class="nav-link" href="/profactiveprojects">My Current Projects</a>
 							</li>
-							<li class="nav-item {% if request.path == "/profprofile/" %}active{% endif %}">
-								<a class="nav-link" href="/profprofile">My Profile</a>
-							</li>
 						{% else %} 
 
 							<li class="nav-item {% if request.path == "/" %}active{% endif %}">
@@ -66,9 +60,6 @@
 							</li>
 							<li class="nav-item {% if request.path == "/profactiveprojects/" %}active{% endif %}">
 								<a class="nav-link" href="/profactiveprojects">My Current Projects</a>
-							</li>
-							<li class="nav-item {% if request.path == "/profprofile/" %}active{% endif %}">
-								<a class="nav-link" href="/profprofile">My Profile</a>
 							</li>
 						{% endif %}
 
