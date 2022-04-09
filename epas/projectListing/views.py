@@ -173,7 +173,7 @@ class PostDetailView(DetailView):
 
 class PostCreateView(CreateView):
     model = Post
-    fields = ['title', 'description', 'date_posted', 'professor', 'desiredNumStudents', 'maxNumStudents', 'minTermLength', 'maxTermLength', 'relatedProgram', 'course', 'active', 'isApproved']
+    fields = ['title', 'description', 'date_posted', 'desiredNumStudents', 'maxNumStudents', 'minTermLength', 'maxTermLength', 'relatedProgram', 'course', 'active']
 
 
     def form_valid(self, form):
