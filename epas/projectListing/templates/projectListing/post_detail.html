@@ -13,14 +13,8 @@
                             {% csrf_token %}
                         
                         
-                            <button type="submit" name='mybtn2'>Download results in Excel</button>
                          </form>
                         
-
-
-
-
-
                         <form method="POST">
                             {% csrf_token %}
                             <input type="hidden" name="student" value={{ request.user.username }}/>
@@ -33,6 +27,11 @@
                             </div>
                         </form>
                         
+                    {% endif %}
+                    {% if user.type == "PROFESSOR" %}
+                         {% if user.username == object.professor.username %}
+                         <button type="submit" name='mybtn2'>Download results in Excel</button>
+                         {% endif %} 
                     {% endif %}
                 </div>
             </div> 
