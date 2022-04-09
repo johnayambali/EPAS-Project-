@@ -2,7 +2,7 @@
 {% block content %}
 <br>
 
-
+<h1>My Projects</h1>   
     {% for post in postedProject %}
         {% if post.professor.username == request.user.username %}
         <div class="card" style="min-width: 80%; max-width: 80%; margin-bottom: 2rem;"> 

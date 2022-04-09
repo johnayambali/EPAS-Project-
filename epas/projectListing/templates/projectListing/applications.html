@@ -7,27 +7,27 @@
         {% for post in appliedProject %}
         
             {% if post.student.username == request.user.username %}
+            {% if post.offStatus == "p" %}
                 <div class="card" style="min-width: 80%; max-width: 80%; margin-bottom: 2rem;"> 
                     <div class="card-body">
                         <h2 class="card-title">{{ post.project.title }}</h2>
                         <h5 class="card-subtitle mb-2 text-muted">Supervised by: {{ post.project.professor }}</h3>
-                        <h6 class="card-subtitle mb-2 text-muted">Posted on: {{ post.project.date_applied }}</h3>
                         <p class="card-text">{{ post.project.description }}</p>
                         <td>
-                            {% if post.status == "Accepted" %}
-                            <button type="button" class="btn btn-outline-success">
-                            {% elif post.status == "Denied" %}
-                            <button type="button" class="btn btn-outline-danger">
+                            {% if post.applicationStatus == "a" %}
+                            <button type="button" class="btn btn-outline-success">Approved</button> 
+                            {% elif post.applicationStatus == "r" %}
+                            <button type="button" class="btn btn-outline-danger">Rejected</button> 
                             {% else %}
-                            <button type="button" class="btn btn-outline-warning">
+                            <button type="button" class="btn btn-outline-warning">Pending</button> 
                             {% endif %}
-                                {{ post.status }}
-                            </button> 
+                            
                         </td>
                         <br><br>
                         <a href="{% url 'application-detail' post.id %}" class="card-link">View Application</a>
                     </div>
                 </div>
+            {% endif %}
             {% endif %}
 
     

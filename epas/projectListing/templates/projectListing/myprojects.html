@@ -4,19 +4,21 @@
     <h1>My Projects</h1>
     <br>
     <div class="card-deck">
-        {% for post in myProjects %}
+        {% for post in appliedProject %}
         
-            
-            <div class="card" style="min-width: 80%; max-width: 80%; margin-bottom: 2rem;"> 
-                <div class="card-body">
-                    <h2 class="card-title">{{ post.title }}</h2>
-                    <h5 class="card-subtitle mb-2 text-muted">Supervised by: {{ post.professor }}</h3>
-                        <h6 class="card-subtitle mb-2 text-muted">Semester: {{ post.semester }}</h3>
-                    <p class="card-text">{{ post.description }}</p>
-                    <a href="#" class="card-link" >View Project</a>
-                </div>
-            </div>
-    
+            {% if post.student.username == request.user.username %}
+                {% if post.offerStatus == "a" %}
+                    {% if post.applicationStatus == "a"%}
+                        <div class="card" style="min-width: 80%; max-width: 80%; margin-bottom: 2rem;"> 
+                            <div class="card-body">
+                                <h2 class="card-title">{{ post.project.title }}</h2>
+                                <h5 class="card-subtitle mb-2 text-muted">Supervised by: {{ post.project.professor }}</h3>
+                                <p class="card-text">{{ post.project.description }}</p>
+                            </div>
+                        </div>
+                    {% endif %}
+                {% endif %}
+            {% endif %}
         {% endfor %}
     <div>
 {% endblock content %}

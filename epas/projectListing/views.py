@@ -96,7 +96,7 @@ def profile(request):
 
 def myprojects(request):
     context = {
-        'myProjects': myProjects
+        'appliedProject': Application.objects.all()
     }
     return render(request, 'projectListing/myprojects.html', context)
 
@@ -219,6 +219,7 @@ class ApplicationDetailView(DetailView):
 class ApplicationCreateView(CreateView):
     model = Application
     success_url = '/'
+    fields = ['appDetails', 'project']
 
     def form_valid(self, form):
         form.instance.student = self.request.user
@@ -239,7 +240,7 @@ class ApplicationUpdateView(UserPassesTestMixin, UpdateView):
         return False
 
 class ApplicationDeleteView(UserPassesTestMixin, DeleteView):
-    model = Post
+    model = Application
     success_url = '/'
 
     def test_func(self):
@@ -253,7 +254,6 @@ class UpdateApprovalView(UserPassesTestMixin, UpdateView):
     fields = ['isApproved']
 
     def form_valid(self, form):
-        form.instance.professor = self.request.user
         return super().form_valid(form)
 
     def test_func(self):
@@ -264,3 +264,30 @@ class UpdateApprovalView(UserPassesTestMixin, UpdateView):
 
 
 
+class UpdateStatusView(UserPassesTestMixin, UpdateView):
+    model = Application
+    fields = ['applicationStatus']
+    success_url = '/'
+
+    def form_valid(self, form):
+        return super().form_valid(form)
+
+    def test_func(self):
+        post = self.get_object()
+        if self.request.user.type == "PROFESSOR":
+            return True
+        return False
+
+class UpdateOfferView(UserPassesTestMixin, UpdateView):
+    model = Application
+    fields = ['offerStatus']
+    success_url = '/'
+
+    def form_valid(self, form):
+        return super().form_valid(form)
+
+    def test_func(self):
+        post = self.get_object()
+        if self.request.user.type == "STUDENT":
+            return True
+        return False

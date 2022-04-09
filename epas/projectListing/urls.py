@@ -1,6 +1,6 @@
 from django.urls import path
 from . import views
-from .views import PostCreateView, PostListView, PostDetailView, PostUpdateView, PostDeleteView, ApplicationCreateView, ApplicationListView, ApplicationDetailView, ApplicationUpdateView, ApplicationDeleteView, UpdateApprovalView
+from .views import PostCreateView, PostListView, PostDetailView, PostUpdateView, PostDeleteView, ApplicationCreateView, ApplicationListView, ApplicationDetailView, ApplicationUpdateView, ApplicationDeleteView, UpdateApprovalView, UpdateStatusView, UpdateOfferView
 
 urlpatterns = [
     path('', PostListView.as_view(), name='projectListing-home'),
@@ -13,9 +13,11 @@ urlpatterns = [
     path('post/<int:pk>/update', PostUpdateView.as_view(), name='post-update'),
     path('post/<int:pk>/delete', PostDeleteView.as_view(), name='post-delete'),
     path('application/new/', ApplicationCreateView.as_view(), name='application-create'),
-    path('post/<int:pk>/', ApplicationDetailView.as_view(), name='application-detail'),
+    path('application/<int:pk>/', ApplicationDetailView.as_view(), name='application-detail'),
     path('application/<int:pk>/update', ApplicationUpdateView.as_view(), name='application-update'),
     path('post/<int:pk>/approval', UpdateApprovalView.as_view(), name='post-approval'),
+    path('application/<int:pk>/status', UpdateStatusView.as_view(), name='application-status'),
+    path('application/<int:pk>/offer', UpdateOfferView.as_view(), name='application-offer'),
     path('application/<int:pk>/delete', ApplicationDeleteView.as_view(), name='application-delete'),
     path('profmyprojects/', views.profmyprojects, name='projectListing-prof_myprojects'),
     path('profprojectapplications/', views.profprojectapplications, name='projectListing-prof_projectapplication'),

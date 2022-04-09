@@ -129,11 +129,37 @@ class Post(models.Model):
         return reverse("post-detail", kwargs={"pk": self.pk})
     
 
+
 class Application(models.Model):
+    Application_STATUS = (
+    ('p', 'Make Decision Later'),
+    ('a', 'Approve'),
+    ('r', 'Reject'),
+    )
+
+
+    Offer_STATUS = (
+    ('p', 'Make Decision Later'),
+    ('a', 'Accept'),
+    ('r', 'Reject'),
+    )
     student = models.ForeignKey(User, on_delete=models.CASCADE)
     project = models.ForeignKey(Post, on_delete=models.CASCADE)
     projectID = models.IntegerField(default=-1)
     appDetails = models.TextField()
+    applicationStatus = models.CharField(
+                max_length=50,
+                choices=Application_STATUS,
+                blank=True,
+                default='p',
+            )
+    offerStatus = models.CharField(
+                max_length=50,
+                choices=Offer_STATUS,
+                blank=True,
+                default='p',
+            )
+            
     def __str__(self):
         return f'Application from {self.student}'
 

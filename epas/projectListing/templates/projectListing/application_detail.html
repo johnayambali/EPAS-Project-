@@ -1,0 +1,25 @@
+{% extends "projectListing/base.html" %}
+{% block content %}
+<br>            
+            <div class="card" style="min-width: 80%; max-width: 80%; margin-bottom: 2rem;"> 
+                <div class="card-body">
+                    <h2 class="card-title">{{ object.project.title }}</h2>
+                    <h5 class="card-subtitle mb-2 text-muted">Student Name: {{ object.student.username }}</h3>
+                    <p class="card-text">{{ object.appDetails }}</p>
+                    {% if user.type == "STUDENT" %}
+                        {% if object.applicationStatus == "a"%}
+                        <a class="btn btn-secondary btn-sm mt-1 mb-1" href="{% url 'application-offe' object.id %}">Make Decision</a>
+                        
+
+                        {% else %}
+                        <a class="btn btn-danger btn-sm mt-1 mb-1" href="{% url 'application-delete' object.id %}">Delete Application</a>
+                        {% endif %}
+                    {% endif %}
+                    {% if user.type == "PROFESSOR" %}
+                    <a class="btn btn-secondary btn-sm mt-1 mb-1" href="{% url 'application-status' object.id %}">Make Decision</a>
+                    {% endif %}
+                </div>
+            </div> 
+
+           
+{% endblock content %}
