@@ -183,7 +183,7 @@ class PostCreateView(CreateView):
 
 class PostUpdateView(UserPassesTestMixin, UpdateView):
     model = Post
-    fields = ['title', 'description', 'date_posted', 'professor', 'desiredNumStudents', 'maxNumStudents', 'minTermLength', 'maxTermLength', 'relatedProgram', 'course']
+    fields = ['title', 'description', 'date_posted', 'desiredNumStudents', 'maxNumStudents', 'minTermLength', 'maxTermLength', 'relatedProgram', 'course', 'active']
 
     def form_valid(self, form):
         form.instance.professor = self.request.user
