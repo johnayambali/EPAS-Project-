@@ -10,9 +10,9 @@
                     <div class="card" style="min-width: 80%; max-width: 80%; margin-bottom: 2rem;"> 
                         <div class="card-body">
                             <h2 class="card-title">{{ post.project.title }}</h2>
-                            <h5 class="card-subtitle mb-2 text-muted">Student Name: {{ post.student.username}}</h3>
-                            <br><br>
+                            <h5 class="card-subtitle mb-2 text-muted">Student Name: {{ post.student.first_name}} {{ post.student.last_name}}</h3>
                             {% if post.applicationStatus == "a"%}
+                                <br><br>
                                 <td>
                                     Student:
                                     {% if post.offerStatus == "a" %}

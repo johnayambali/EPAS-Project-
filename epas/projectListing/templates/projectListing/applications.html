@@ -7,11 +7,11 @@
         {% for post in appliedProject %}
         
             {% if post.student.username == request.user.username %}
-            {% if post.offStatus == "p" %}
+            {% if post.offerStatus == "p" %}
                 <div class="card" style="min-width: 80%; max-width: 80%; margin-bottom: 2rem;"> 
                     <div class="card-body">
                         <h2 class="card-title">{{ post.project.title }}</h2>
-                        <h5 class="card-subtitle mb-2 text-muted">Supervised by: {{ post.project.professor }}</h3>
+                        <h5 class="card-subtitle mb-2 text-muted">Supervised by: Professor {{ post.project.professor.last_name }}</h3>
                         <p class="card-text">{{ post.project.description }}</p>
                         <td>
                             {% if post.applicationStatus == "a" %}

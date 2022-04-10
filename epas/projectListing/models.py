@@ -109,18 +109,18 @@ class ProgramDirector(User):
 
 
 class Post(models.Model):
-    title = models.CharField(max_length=100)
-    description = models.TextField()
+    title = models.CharField(max_length=100, verbose_name='Project name:')
+    description = models.TextField(verbose_name='Project description:')
     date_posted = models.DateField(default=timezone.now)
     professor = models.ForeignKey(User, on_delete=models.CASCADE)
-    desiredNumStudents = models.IntegerField()
-    maxNumStudents = models.IntegerField()
-    minTermLength = models.IntegerField()
-    maxTermLength = models.IntegerField()
-    relatedProgram = models.CharField(max_length=100)
-    course = models.CharField(max_length=100, default="null")
-    active = models.BooleanField(default=False)
-    isApproved = models.BooleanField(default=False)
+    desiredNumStudents = models.IntegerField(verbose_name='Ideal number of students')
+    maxNumStudents = models.IntegerField(verbose_name='Max number of students:')
+    minTermLength = models.IntegerField(verbose_name='Min number of months:')
+    maxTermLength = models.IntegerField(verbose_name='Max number of months:')
+    relatedProgram = models.CharField(max_length=100, verbose_name='Program:')
+    course = models.CharField(max_length=100, default="null", verbose_name='Course:')
+    active = models.BooleanField(default=False, verbose_name='Active')
+    isApproved = models.BooleanField(default=False, verbose_name='Approve?')
 
     def __str__(self):
         return self.title
@@ -146,7 +146,7 @@ class Application(models.Model):
     student = models.ForeignKey(User, on_delete=models.CASCADE)
     project = models.ForeignKey(Post, on_delete=models.CASCADE)
     projectID = models.IntegerField(default=-1)
-    appDetails = models.TextField()
+    appDetails = models.TextField(verbose_name='Tell us why you\'d like this project')
     applicationStatus = models.CharField(
                 max_length=50,
                 choices=Application_STATUS,
@@ -159,7 +159,7 @@ class Application(models.Model):
                 blank=True,
                 default='p',
             )
-            
+
     def __str__(self):
         return f'Application from {self.student}'
 
