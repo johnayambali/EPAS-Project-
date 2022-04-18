@@ -219,10 +219,11 @@ class ApplicationDetailView(DetailView):
 class ApplicationCreateView(CreateView):
     model = Application
     success_url = '/'
-    fields = ['appDetails', 'project']
-
+    fields = ['appDetails']
+    
     def form_valid(self, form):
         form.instance.student = self.request.user
+        form.instance.project = Post.objects.get(id=self.kwargs['pk'])
         return super().form_valid(form)
 
 class ApplicationUpdateView(UserPassesTestMixin, UpdateView):

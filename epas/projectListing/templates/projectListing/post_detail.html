@@ -9,7 +9,7 @@
                     <h6 class="card-subtitle mb-2 text-muted">Number of students: {{ object.desiredNumStudents}}</h3> 
                     <p class="card-text">{{ object.description }}</p>
                     {% if user.type == "STUDENT" %}
-                        <form action="{% url 'application-create' %}" method="post">
+                        <form action="{% url 'application-create' post.id%}" method="post">
                             {% csrf_token %}
                         
                         
@@ -24,7 +24,7 @@
                             <input type="hidden" name="appDetails" value={{ request.user.username }}/>
 
                             <div class="form-group">
-                                <a class="btn btn-outline-info" type="submit" href="{% url 'application-create'%}" value="Application">Apply</a>
+                                <a class="btn btn-outline-info" type="submit" href="{% url 'application-create' post.id%}" value="Application">Apply</a>
                             </div>
                         </form>
                         
