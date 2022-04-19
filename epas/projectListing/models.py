@@ -109,6 +109,9 @@ class ProgramDirector(User):
 
 
 class Post(models.Model):
+    courses = (
+    ('CSI4900', 'CSI4900'),
+    )
     title = models.CharField(max_length=100, verbose_name='Project name:')
     description = models.TextField(verbose_name='Project description:')
     date_posted = models.DateField(default=timezone.now)
@@ -119,10 +122,15 @@ class Post(models.Model):
     minTermLength = models.IntegerField(verbose_name='Min number of months:')
     maxTermLength = models.IntegerField(verbose_name='Max number of months:')
     relatedProgram = models.CharField(max_length=100, verbose_name='Program:')
-    course = models.CharField(max_length=100, default="null", verbose_name='Course:')
+    course = models.CharField(
+                max_length=100,
+                choices=courses,
+                blank=True,
+                default="null",
+                verbose_name='Course:')
     active = models.BooleanField(default=False, verbose_name='Active')
     isApproved = models.BooleanField(default=False, verbose_name='Approve?')
-
+    completed = models.BooleanField(default=False, verbose_name='Mark as complete?')
     def __str__(self):
         return self.title
 
@@ -160,6 +168,7 @@ class Application(models.Model):
                 blank=True,
                 default='p',
             )
+    isApproved = models.BooleanField(default=False, verbose_name='Approve?')
 
     class Meta:
      unique_together = ('student', 'project',)
