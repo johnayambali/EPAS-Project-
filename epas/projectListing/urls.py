@@ -3,7 +3,7 @@ from . import views
 from .views import PostCreateView, PostListView, PostDetailView, PostUpdateView, PostDeleteView, ApplicationCreateView, ApplicationListView, ApplicationDetailView, ApplicationUpdateView, ApplicationDeleteView, UpdateApprovalView, UpdateStatusView, UpdateOfferView
 
 urlpatterns = [
-    path('', PostListView.as_view(), name='projectListing-home'),
+    path('', views.home, name='projectListing-home'),
     path('profile/', views.profile, name='projectListing-profile'),
     path('approval/', views.homeDirector, name='projectListing-homeDirector'),
     path('myprojects/', views.myprojects, name='projectListing-myprojects'),

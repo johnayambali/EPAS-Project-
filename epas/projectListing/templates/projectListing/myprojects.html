@@ -5,8 +5,7 @@
     <br>
     <div class="card-deck">
         {% for post in appliedProject %}
-        
-            {% if post.student.username == request.user.username %}
+
                 {% if post.offerStatus == "a" %}
                     {% if post.applicationStatus == "a"%}
                         <div class="card" style="min-width: 80%; max-width: 80%; margin-bottom: 2rem;"> 
@@ -18,7 +17,6 @@
                         </div>
                     {% endif %}
                 {% endif %}
-            {% endif %}
         {% endfor %}
     <div>
 {% endblock content %}

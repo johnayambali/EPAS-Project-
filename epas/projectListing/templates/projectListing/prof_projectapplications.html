@@ -5,35 +5,31 @@
     <br>
     <div class="card-deck">
         {% for post in appliedProject %}
-            {% if user.username == post.project.professor.username %}
-                {% if post.applicationStatus != "r"%}
-                    <div class="card" style="min-width: 80%; max-width: 80%; margin-bottom: 2rem;"> 
-                        <div class="card-body">
-                            <h2 class="card-title">{{ post.project.title }}</h2>
-                            <h5 class="card-subtitle mb-2 text-muted">Student Name: {{ post.student.first_name}} {{ post.student.last_name}}</h3>
-                            {% if post.applicationStatus == "a"%}
-                                <br><br>
-                                <td>
-                                    Student:
-                                    {% if post.offerStatus == "a" %}
-                                    <button type="button" class="btn btn-outline-success">Accepted</button> 
-                                    {% elif post.offerStatus == "r" %}
-                                    <button type="button" class="btn btn-outline-danger">Rejected</button> 
-                                    {% else %}
-                                    <button type="button" class="btn btn-outline-warning">Pending</button> 
-                                    {% endif %}
-                                    
-                                </td>
-                            {% else %}
-                            <br>
-                            <a href="{% url 'application-detail' post.id %}" class="card-link">View Application</a>
-                            {% endif %}
-                        </div>
+            {% if post.applicationStatus != "r"%}
+                <div class="card" style="min-width: 80%; max-width: 80%; margin-bottom: 2rem;"> 
+                    <div class="card-body">
+                        <h2 class="card-title">{{ post.project.title }}</h2>
+                        <h5 class="card-subtitle mb-2 text-muted">Student Name: {{ post.student.first_name}} {{ post.student.last_name}}</h3>
+                        {% if post.applicationStatus == "a"%}
+                            <br><br>
+                            <td>
+                                Student:
+                                {% if post.offerStatus == "a" %}
+                                <button type="button" class="btn btn-outline-success">Accepted</button> 
+                                {% elif post.offerStatus == "r" %}
+                                <button type="button" class="btn btn-outline-danger">Rejected</button> 
+                                {% else %}
+                                <button type="button" class="btn btn-outline-warning">Pending</button> 
+                                {% endif %}
+                                
+                            </td>
+                        {% else %}
+                        <br>
+                        <a href="{% url 'application-detail' post.id %}" class="card-link">View Application</a>
+                        {% endif %}
                     </div>
+                </div>
             {% endif %}
-            {% endif %}
-
-    
         {% endfor %}
     <div>
 {% endblock content %}

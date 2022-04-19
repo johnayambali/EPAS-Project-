@@ -1,7 +1,9 @@
 from gc import get_objects
+from socket import AF_APPLETALK
 from django.shortcuts import render
-from .models import Post
+from .models import Post, Professor
 from .models import Application
+from .models import User
 from django.views.generic import CreateView, ListView, DetailView, UpdateView, DeleteView
 from django.contrib.auth.mixins import UserPassesTestMixin
 from django.http import HttpResponseRedirect
@@ -78,8 +80,12 @@ profMyProjects = [
 ]
 
 def home(request):
+    
+    application = Application.objects.filter(student=request.user)
     context = {
-        'postedProject': Post.objects.all()
+        'application': application,
+        'postedProject': Post.objects.all(),
+        'appliedProject': Application.objects.all()
     }
     return render(request, 'projectListing/home.html', context)
 
@@ -95,14 +101,16 @@ def profile(request):
     return render(request, 'projectListing/profile.html', {'title': 'Profile'})
 
 def myprojects(request):
+    application = Application.objects.filter(student=request.user)
     context = {
-        'appliedProject': Application.objects.all()
+        'appliedProject': application
     }
     return render(request, 'projectListing/myprojects.html', context)
 
 def applications(request):
+    application = Application.objects.filter(student=request.user)
     context = {
-        'appliedProject': Application.objects.all()
+        'appliedProject': application
     }
     return render(request, 'projectListing/applications.html', context)
 
@@ -120,14 +128,16 @@ def profmyprojects(request):
     return render(request, 'projectListing/prof_myprojects.html', {'title': 'Profile'})
 
 def profmyactiveprojects(request):
+    projects = Post.objects.filter(professor=request.user)
     context = {
-        'postedProject': Post.objects.all()
+        'postedProject': projects
     }
     return render(request, 'projectListing/prof_myactiveprojects.html', context)
 
 def profprojectapplications(request):
+    applications = Application.objects.filter(project__professor=request.user)
     context = {
-        'appliedProject': Application.objects.all()
+        'appliedProject': applications
     }
     return render(request, 'projectListing/prof_projectapplications.html', context)
 
