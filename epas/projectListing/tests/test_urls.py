@@ -7,7 +7,7 @@ from users.views import profile
 
 #This tests all the urls in **projectListing**
 #Tests using reverse and resolve
-#pk = primary key
+#pk  = primary key
 
 
 class TestUrls(SimpleTestCase):
@@ -15,8 +15,7 @@ class TestUrls(SimpleTestCase):
 
     def test_home_url_resolves(self):
         url = reverse('projectListing-home')
-        # print(resolve(url))
-        self.assertEquals(resolve(url).func.view_class, PostListView)
+        self.assertEquals(resolve(url).func, home)
 
     def test_profile_url_resolves(self):
         url = reverse('projectListing-profile')
