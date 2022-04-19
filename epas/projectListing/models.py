@@ -113,6 +113,7 @@ class Post(models.Model):
     description = models.TextField(verbose_name='Project description:')
     date_posted = models.DateField(default=timezone.now)
     professor = models.ForeignKey(User, on_delete=models.CASCADE)
+    student = models.ForeignKey(User, null=True, on_delete=models.CASCADE, related_name='student')
     desiredNumStudents = models.IntegerField(verbose_name='Ideal number of students')
     maxNumStudents = models.IntegerField(verbose_name='Max number of students:')
     minTermLength = models.IntegerField(verbose_name='Min number of months:')

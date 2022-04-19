@@ -6,7 +6,6 @@
     <div class="card-deck">
         {% for post in appliedProject %}
         
-            {% if post.student.username == request.user.username %}
             {% if post.offerStatus == "p" %}
                 <div class="card" style="min-width: 80%; max-width: 80%; margin-bottom: 2rem;"> 
                     <div class="card-body">
@@ -27,7 +26,6 @@
                         <a href="{% url 'application-detail' post.id %}" class="card-link">View Application</a>
                     </div>
                 </div>
-            {% endif %}
             {% endif %}
 
     
