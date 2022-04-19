@@ -161,6 +161,9 @@ class Application(models.Model):
                 default='p',
             )
 
+    class Meta:
+     unique_together = ('student', 'project',)
+
     def __str__(self):
         return f'Application from {self.student}'
 
