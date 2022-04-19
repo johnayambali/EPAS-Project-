@@ -20,6 +20,7 @@ def home(request):
             'appliedProject': Application.objects.all()
         }
         return render(request, 'projectListing/home.html', context)
+
     if request.user.type == "STUDENT":
         application = Application.objects.filter(student=request.user)
         projects = Post.objects.filter(student=None)
@@ -40,6 +41,13 @@ def home(request):
         context = {
             'application': applied,
             'postedProject': notApplied,
+            'appliedProject': Application.objects.all()
+        }
+        return render(request, 'projectListing/home.html', context)
+
+    else:
+        context = {
+            'postedProject': Post.objects.all(),
             'appliedProject': Application.objects.all()
         }
         return render(request, 'projectListing/home.html', context)
