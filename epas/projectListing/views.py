@@ -14,29 +14,35 @@ from django.shortcuts import redirect
 
 
 def home(request):
-    
-    application = Application.objects.filter(student=request.user)
-    projects = Post.objects.filter(student=None)
-    applied = []
-    notApplied = []
-    
+    if request.user.is_anonymous:
+        context = {
+            'postedProject': Post.objects.all(),
+            'appliedProject': Application.objects.all()
+        }
+        return render(request, 'projectListing/home.html', context)
+    if request.user.type == "STUDENT":
+        application = Application.objects.filter(student=request.user)
+        projects = Post.objects.filter(student=None)
+        applied = []
+        notApplied = []
+        
 
-    for pro in projects:
-        flag = False
-        for app in application:
-            if pro.id == app.project.id:
-                flag = True
-        if flag == True:
-            applied.append(app)
-        if flag == False:
-            notApplied.append(pro)
+        for pro in projects:
+            flag = False
+            for app in application:
+                if pro.id == app.project.id:
+                    flag = True
+            if flag == True:
+                applied.append(app)
+            if flag == False:
+                notApplied.append(pro)
 
-    context = {
-        'application': applied,
-        'postedProject': notApplied,
-        'appliedProject': Application.objects.all()
-    }
-    return render(request, 'projectListing/home.html', context)
+        context = {
+            'application': applied,
+            'postedProject': notApplied,
+            'appliedProject': Application.objects.all()
+        }
+        return render(request, 'projectListing/home.html', context)
 
 def homeDirector(request):
     applications = Application.objects.filter(offerStatus='a', applicationStatus='a', project__student=None)
