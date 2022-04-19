@@ -2,8 +2,13 @@
 {% block content %}
 <br>
     <h1>Applications</h1>
-    <br>
+    <br><br>
+    {% if appliedProject.count == 0 %}
+            <h3> You currently have no applications. Please see the list of projects to apply to <a href="{% url 'projectListing-home' %}" class="card-link">here</a></h3>
+        {% endif %}
     <div class="card-deck">
+        
+
         {% for post in appliedProject %}
         
             {% if post.offerStatus == "p" %}

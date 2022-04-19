@@ -1,21 +1,28 @@
 {% extends "projectListing/base.html" %}
 {% block content %}
 <br>
-    <h1>List of Projects Waiting for Approval</h1>    <br>
+    <h1>List of Projects Waiting for Approval</h1>    
+    <br><br>
+    {% if postedProject.count == 0 %}
+        <h3> There are currently no projects pending your approval</a></h3>
+    {% endif %}
     <div class="card-deck">
             {% for post in postedProject %}
-            
-                {% if post.isApproved is False %}
-                <div class="card" style="min-width: 80%; max-width: 80%; margin-bottom: 2rem;"> 
-                    <div class="card-body">
-                        <h2 class="card-title">{{ post.title }}</h2>
-                        <h5 class="card-subtitle mb-2 text-muted">Supervised by: Professor {{ post.professor.last_name }}</h3>
-                        <h6 class="card-subtitle mb-2 text-muted">Posted on: {{ post.date_posted }}</h3>
-                        <h6 class="card-subtitle mb-2 text-muted">Number of students: {{ post.desiredNumStudents}}</h3>
-                        <p class="card-text">{{ post.description }}</p>
-                        <a href="{% url 'post-detail' post.id %}" class="card-link">View Project</a>
+                {% if post.offerStatus == 'a'%}
+                    {% if post.applicationStatus == 'a'%}
+                    {% if not post.isApproved %}
+                    <div class="card" style="min-width: 80%; max-width: 80%; margin-bottom: 2rem;"> 
+                        <div class="card-body">
+                            <h2 class="card-title">{{ post.project.title }}</h2>
+                            <h5 class="card-subtitle mb-2 text-muted">Supervised by: Professor {{ post.project.professor.last_name }}</h3>
+                            <h6 class="card-subtitle mb-2 text-muted">Posted on: {{ post.project.date_posted }}</h3>
+                            <h6 class="card-subtitle mb-2 text-muted">Student Selected: {{ post.student.first_name}}</h3>
+                            <p class="card-text">{{ post.project.description }}</p>
+                            <a href="{% url 'post-assign' post.project.id %}" class="card-link">Approve Project</a>
+                        </div>
                     </div>
-                </div>
+                    {% endif %}
+                    {% endif %}
                 {% endif %}
             {% endfor %}
     <div>

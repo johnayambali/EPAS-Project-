@@ -34,10 +34,14 @@
 
             {% if user.type == "PROFESSOR" %}
                 {% if user.username == object.professor.username %}
-                    <button type="submit" name='mybtn2'>Download results in Excel</button>
-                    <br>
-                    <a class="btn btn-secondary btn-sm mt-1 mb-1" href="{% url 'post-update' object.id %}">Update Project</a>
-                    <a class="btn btn-danger btn-sm mt-1 mb-1" href="{% url 'post-delete' object.id %}">Delete Project</a>
+                    {% if object.student == None %}
+                        <button type="submit" name='mybtn2'>Download results in Excel</button>
+                        <br>
+                        <a class="btn btn-secondary btn-sm mt-1 mb-1" href="{% url 'post-update' object.id %}">Update Project</a>
+                        <a class="btn btn-danger btn-sm mt-1 mb-1" href="{% url 'post-delete' object.id %}">Delete Project</a>
+                    {% else %}
+                        <a class="btn btn-secondary btn-sm mt-1 mb-1" href="{% url 'post-complete' object.id %}">Mark Project as Complete</a>
+                    {% endif %} 
                 {% endif %} 
             {% endif %}
             

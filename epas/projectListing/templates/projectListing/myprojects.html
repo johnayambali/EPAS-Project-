@@ -2,21 +2,23 @@
 {% block content %}
 <br>
     <h1>My Projects</h1>
-    <br>
+    <br><br>
+    {% if appliedProject.count == 0 %}
+            <h3> You are currently not assigned to any projects. </h3>
+            <h3> Please see list of projects to apply to <a href="{% url 'projectListing-home' %}" class="card-link">here</a>, or review your current applications<a href="{% url 'projectListing-applications' %}" class="card-link">here</a>.</h3>
+        {% endif %}
     <div class="card-deck">
+        
         {% for post in appliedProject %}
-
-                {% if post.offerStatus == "a" %}
-                    {% if post.applicationStatus == "a"%}
-                        <div class="card" style="min-width: 80%; max-width: 80%; margin-bottom: 2rem;"> 
-                            <div class="card-body">
-                                <h2 class="card-title">{{ post.project.title }}</h2>
-                                <h5 class="card-subtitle mb-2 text-muted">Supervised by: Professor {{ post.project.professor.last_name }}</h3>
-                                <p class="card-text">{{ post.project.description }}</p>
-                            </div>
-                        </div>
-                    {% endif %}
-                {% endif %}
+            {%if not post.completed%}
+            <div class="card" style="min-width: 80%; max-width: 80%; margin-bottom: 2rem;"> 
+                <div class="card-body">
+                    <h2 class="card-title">{{ post.title }}</h2>
+                    <h5 class="card-subtitle mb-2 text-muted">Supervised by: Professor {{ post.professor.last_name }}</h3>
+                    <p class="card-text">{{ post.description }}</p>
+                </div>
+            </div>
+            {% endif %}
         {% endfor %}
     <div>
 {% endblock content %}

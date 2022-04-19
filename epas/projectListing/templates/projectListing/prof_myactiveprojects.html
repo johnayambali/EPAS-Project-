@@ -3,17 +3,32 @@
 <br>
 
 <h1>My Projects</h1>   
+    {% if postedProject.count == 0 %}
+            <h3>You have not posted a project yet. Please click <a href="{% url 'post-create' %}" class="card-link">here</a> to add a project </h3>
+    {% endif %}     
     {% for post in postedProject %}
+        {% if not post.completed%}
         <div class="card" style="min-width: 80%; max-width: 80%; margin-bottom: 2rem;"> 
             <div class="card-body">
                 <h2 class="card-title">{{ post.title }}</h2>
                 <h5 class="card-subtitle mb-2 text-muted">Supervised by: Professor {{ post.professor.last_name }}</h3>
                 <h6 class="card-subtitle mb-2 text-muted">Posted on: {{ post.date_posted }}</h3>
                 <h6 class="card-subtitle mb-2 text-muted">Number of students: {{ post.desiredNumStudents}}</h3>
+                {% if post.student == None %}
+                <h6 class="card-subtitle mb-2 text-muted">Assigned student: <strong>None</strong></h3>
+                {% else %}
+                <h6 class="card-subtitle mb-2 text-muted">Assigned Student: {{ post.student.first_name}} {{ post.student.last_name}}</h3>
+                {% endif %}
                 <p class="card-text">{{ post.description }}</p>
+                {% if post.student == None %}
                 <a href="{% url 'post-detail' post.id %}" class="card-link">View Project</a>
+                {% else %}
+                <a href="{% url 'post-detail' post.id %}" class="card-link">Mark Project as Complete</a>
+                {% endif %}
+                
             </div>
         </div>
+        {% endif %}
     {% endfor %}
 {% endblock content %}
        
