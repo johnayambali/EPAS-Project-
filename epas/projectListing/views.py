@@ -1,3 +1,4 @@
+from email.mime import application
 from gc import get_objects
 from socket import AF_APPLETALK
 from django.shortcuts import render
@@ -15,16 +16,32 @@ from django.shortcuts import redirect
 def home(request):
     
     application = Application.objects.filter(student=request.user)
+    projects = Post.objects.filter(student=None)
+    applied = []
+    notApplied = []
+    
+
+    for pro in projects:
+        flag = False
+        for app in application:
+            if pro.id == app.project.id:
+                flag = True
+        if flag == True:
+            applied.append(app)
+        if flag == False:
+            notApplied.append(pro)
+
     context = {
-        'application': application,
-        'postedProject': Post.objects.all(),
+        'application': applied,
+        'postedProject': notApplied,
         'appliedProject': Application.objects.all()
     }
     return render(request, 'projectListing/home.html', context)
 
 def homeDirector(request):
+    applications = Application.objects.filter(offerStatus='a', applicationStatus='a', project__student=None)
     context = {
-        'postedProject': Post.objects.all()
+        'postedProject': applications
     }
     return render(request, 'projectListing/home_director.html', context)
 
@@ -34,14 +51,16 @@ def profile(request):
     return render(request, 'projectListing/profile.html', {'title': 'Profile'})
 
 def myprojects(request):
-    application = Application.objects.filter(student=request.user)
+    application = Post.objects.filter(student=request.user, completed=False)
+
     context = {
         'appliedProject': application
     }
     return render(request, 'projectListing/myprojects.html', context)
 
 def applications(request):
-    application = Application.objects.filter(student=request.user)
+    application = Application.objects.filter(student=request.user, project__student=None)
+   
     context = {
         'appliedProject': application
     }
@@ -50,13 +69,14 @@ def applications(request):
 
 def profmyactiveprojects(request):
     projects = Post.objects.filter(professor=request.user)
+    
     context = {
         'postedProject': projects
     }
     return render(request, 'projectListing/prof_myactiveprojects.html', context)
 
 def profprojectapplications(request):
-    applications = Application.objects.filter(project__professor=request.user)
+    applications = Application.objects.filter(project__professor=request.user, student=None)
     context = {
         'appliedProject': applications
     }
@@ -117,12 +137,51 @@ class PostUpdateView(UserPassesTestMixin, UpdateView):
     fields = ['title', 'description', 'date_posted', 'desiredNumStudents', 'maxNumStudents', 'minTermLength', 'maxTermLength', 'relatedProgram', 'course', 'active']
 
     def form_valid(self, form):
-        form.instance.professor = self.request.user
+        if self.request.user.type == "PROGRAM_DIRECTOR":
+            pass
+        else:
+            form.instance.professor = self.request.user
         return super().form_valid(form)
 
     def test_func(self):
         post = self.get_object()
         if self.request.user == post.professor or self.request.user.type == "PROGRAM_DIRECTOR":
+            return True
+        return False
+
+class PostUpdateView2(UserPassesTestMixin, UpdateView):
+    model = Post
+    fields = ['isApproved']
+    success_url = '/'
+
+    def form_valid(self, form):
+        application = Application.objects.get(project=self.get_object(), offerStatus='a', applicationStatus='a')
+        if self.request.user.type == "PROGRAM_DIRECTOR":
+            form.instance.student = application.student
+            application.isApproved = True
+            application.save()
+        else:
+            form.instance.professor = self.request.user
+        return super().form_valid(form)
+
+    def test_func(self):
+        post = self.get_object()
+        if self.request.user == post.professor or self.request.user.type == "PROGRAM_DIRECTOR":
+            return True
+        return False
+
+class PostUpdateView3(UserPassesTestMixin, UpdateView):
+    model = Post
+    fields = ['completed']
+    success_url = '/'
+
+    def form_valid(self, form):
+        form.instance.professor = self.request.user
+        return super().form_valid(form)
+
+    def test_func(self):
+        post = self.get_object()
+        if self.request.user == post.professor:
             return True
         return False
 
