@@ -1,6 +1,7 @@
 {% extends "projectListing/base.html" %}
 
 {% load crispy_forms_tags %}
+{% load i18n %}
 
 {% block content %}
 
@@ -9,14 +10,14 @@
 	<form method ="POST">
 		{% csrf_token %}
 		<fieldset class="form=group">
-				<legend class="border-bottom mb-4">Register</legend>
+				<legend class="border-bottom mb-4">{% trans "Register" %}</legend>
 				{{ form | crispy }}
 
 		</fieldset>
 
 		<div class = "form-group">
 				<button class="btn btn-outline-info" type="submit">
-					Sign Up
+					{% trans "Sign Up" %}
 				</button>
 		</div>
 
@@ -24,7 +25,7 @@
 
 	<div class ="border-top pt-3">
 			<small class ="text-muted">
-				Already Have An Account? <a class ="ml-2" href="{% url 'login' %}">Sign In</a>
+				{% trans "Already Have An Account?" %}" <a class ="ml-2" href="{% url 'login' %}">{% trans "Sign In" %}</a>
 			</small>
 	</div>
 

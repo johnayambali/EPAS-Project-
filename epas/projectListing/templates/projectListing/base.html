@@ -74,41 +74,40 @@
           		</ul>
 				<!--Login/signup views-->
           		<div class="navbar-nav">
+
+					<!-- translation module -->
+							
+					<div class="nav-item nav-link">
+
+						<form action="{% url 'set_language' %}" method="post">
+							{% csrf_token %}
+							<input name="next" type="hidden" value="/" />
+					
+							<select class="form-select bg-transparent text-dark" name="language" style="width: auto;" onchange="this.form.submit()">
+							  {% get_current_language as LANGUAGE_CODE %}
+							  {% get_available_languages as LANGUAGES %}
+							  {% get_language_info_list for LANGUAGES as languages %}
+							  {% for language in languages %}
+					
+								  <option
+									value="{{ language.code }}"
+									{% if language.code == LANGUAGE_CODE %} selected="selected"{% endif %}
+									data-content=
+									<span style="display:inline-block; width:100px; padding-left: 10px; text-shadow:none">
+									  {{ language.name_local }}
+									</span>
+									
+								  </option>
+					
+							  {% endfor %}
+							</select>
+						</form>
+					
+					</div>
 						{% if user.is_authenticated %}
 							{% if user.type != "STUDENT" %}
 								<a class=" nav-item nav-link" href="{% url 'post-create' %}">{% trans "Add Project" %}</a>
 							{% endif %}
-
-							<!-- translation module -->
-							
-							<div class="nav-item nav-link">
-
-								<form action="{% url 'set_language' %}" method="post">
-									{% csrf_token %}
-									<input name="next" type="hidden" value="/" />
-							
-									<select class="form-select bg-transparent text-dark" name="language" style="width: auto;" onchange="this.form.submit()">
-									  {% get_current_language as LANGUAGE_CODE %}
-									  {% get_available_languages as LANGUAGES %}
-									  {% get_language_info_list for LANGUAGES as languages %}
-									  {% for language in languages %}
-							
-										  <option
-											value="{{ language.code }}"
-											{% if language.code == LANGUAGE_CODE %} selected="selected"{% endif %}
-											data-content=
-											<span style="display:inline-block; width:100px; padding-left: 10px; text-shadow:none">
-											  {{ language.name_local }}
-											</span>
-											
-										  </option>
-							
-									  {% endfor %}
-									</select>
-								</form>
-							
-							</div>
-
 
 							<a class="nav-item nav-link" href="{% url 'profile' %}">Profile</a>
 							<a class="nav-item nav-link" href="{% url 'logout' %}">{% trans "Log Out " %}</a>
