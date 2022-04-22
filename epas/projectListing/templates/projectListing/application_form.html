@@ -1,15 +1,16 @@
 {% extends "projectListing/base.html" %}
+{% load i18n %}
 {% load crispy_forms_tags %}
 {% block content %}
     <div class="content-secition">
         <form method="POST">
             {% csrf_token %}
             <fieldset class="form-group">
-                <legend class="border-bottom mb-4">Application Post</legend>
+                <legend class="border-bottom mb-4">{% trans "Application Post" %}</legend>
                 {{ form|crispy }}
             </fieldset>
             <div class="form-group">
-                <button class="btn btn-outline-info" type="submit">Submit</button>
+                <button class="btn btn-outline-info" type="submit">{% trans "Submit" %}</button>
             </div>
         </form>
     </div>

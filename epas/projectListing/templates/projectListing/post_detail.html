@@ -1,12 +1,13 @@
 {% extends "projectListing/base.html" %}
+{% load i18n %}
 {% block content %}
 <br>            
             <div class="card" style="min-width: 80%; max-width: 80%; margin-bottom: 2rem;"> 
                 <div class="card-body">
                     <h2 class="card-title">{{ object.title }}</h2>
-                    <h5 class="card-subtitle mb-2 text-muted">Supervised by: Professor {{ object.professor.last_name }}</h3>
-                    <h6 class="card-subtitle mb-2 text-muted">Posted on: {{ object.date_posted }}</h3>
-                    <h6 class="card-subtitle mb-2 text-muted">Number of students: {{ object.desiredNumStudents}}</h3> 
+                    <h5 class="card-subtitle mb-2 text-muted">{% trans "Supervised by: Professor" %} {{ object.professor.last_name }}</h3>
+                    <h6 class="card-subtitle mb-2 text-muted">{% trans "Posted on:" %} {{ object.date_posted }}</h3>
+                    <h6 class="card-subtitle mb-2 text-muted">{% trans "Number of students:" %} {{ object.desiredNumStudents}}</h3> 
                     <p class="card-text">{{ object.description }}</p>
                     {% if user.type == "STUDENT" %}
                         <form action="{% url 'application-create' post.id%}" method="post">
@@ -24,7 +25,7 @@
                             <input type="hidden" name="appDetails" value={{ request.user.username }}/>
 
                             <div class="form-group">
-                                <a class="btn btn-outline-info" type="submit" href="{% url 'application-create' post.id%}" value="Application">Apply</a>
+                                <a class="btn btn-outline-info" type="submit" href="{% url 'application-create' post.id%}" value="Application">{% trans "Apply" %}</a>
                             </div>
                         </form>
                         
@@ -35,12 +36,12 @@
             {% if user.type == "PROFESSOR" %}
                 {% if user.username == object.professor.username %}
                     {% if object.student == None %}
-                        <button type="submit" name='mybtn2'>Download results in Excel</button>
+                        <button type="submit" name='mybtn2'>{% trans "Download results in Excel" %}</button>
                         <br>
-                        <a class="btn btn-secondary btn-sm mt-1 mb-1" href="{% url 'post-update' object.id %}">Update Project</a>
-                        <a class="btn btn-danger btn-sm mt-1 mb-1" href="{% url 'post-delete' object.id %}">Delete Project</a>
+                        <a class="btn btn-secondary btn-sm mt-1 mb-1" href="{% url 'post-update' object.id %}">{% trans "Update Project" %}</a>
+                        <a class="btn btn-danger btn-sm mt-1 mb-1" href="{% url 'post-delete' object.id %}">{% trans "Delete Project" %}</a>
                     {% else %}
-                        <a class="btn btn-secondary btn-sm mt-1 mb-1" href="{% url 'post-complete' object.id %}">Mark Project as Complete</a>
+                        <a class="btn btn-secondary btn-sm mt-1 mb-1" href="{% url 'post-complete' object.id %}">{% trans "Mark Project as Complete" %}</a>
                     {% endif %} 
                 {% endif %} 
             {% endif %}
@@ -48,12 +49,12 @@
             {% if user.type == "PROGRAM_DIRECTOR" %}
                 {% if post.isApproved is True %}
                         {% if user.username == object.professor.username %}
-                                <a class="btn btn-secondary btn-sm mt-1 mb-1" href="{% url 'post-update' object.id %}">Update Project</a>
-                                <a class="btn btn-danger btn-sm mt-1 mb-1" href="{% url 'post-delete' object.id %}">Delete Project</a>
+                                <a class="btn btn-secondary btn-sm mt-1 mb-1" href="{% url 'post-update' object.id %}">{% trans "Update Project" %}</a>
+                                <a class="btn btn-danger btn-sm mt-1 mb-1" href="{% url 'post-delete' object.id %}">{% trans "Delete Project" %}</a>
                         {% endif %} 
                     {% else %}
-                            <a class="btn btn-secondary btn-sm mt-1 mb-1" href="{% url 'post-approval' object.id %}">Approve Project</a>
-                            <a class="btn btn-danger btn-sm mt-1 mb-1" href="{% url 'post-delete' object.id %}">Disapprove Project</a>
+                            <a class="btn btn-secondary btn-sm mt-1 mb-1" href="{% url 'post-approval' object.id %}">{% trans "Approve Project" %}</a>
+                            <a class="btn btn-danger btn-sm mt-1 mb-1" href="{% url 'post-delete' object.id %}">{% trans "Disapprove Project" %}</a>
                         {% endif %}
                     {% endif %}
         

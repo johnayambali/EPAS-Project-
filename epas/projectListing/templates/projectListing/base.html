@@ -1,3 +1,5 @@
+{% load i18n %}
+
 <!DOCTYPE html>
 <html>
   <head>
@@ -28,44 +30,44 @@
 					{% if user.is_authenticated %}
 						{% if user.type == "STUDENT" %}
 							<li class="nav-item {% if request.path == "/" %}active{% endif %}">
-								<a class="nav-link" href="/">Posted Projects</a>
+								<a class="nav-link" href="/">{% trans "Posted Projects" %}</a>
 							</li>
 							<li class="nav-item {% if request.path == "/applications/" %}active{% endif %}">
-								<a class="nav-link" href="/applications">My Applications</a>
+								<a class="nav-link" href="/applications">{% trans "My Applications" %}</a>
 							</li>
 							<li class="nav-item {% if request.path == "/myprojects/" %}active{% endif %}">
-								<a class="nav-link" href="/myprojects">My Projects</a>
+								<a class="nav-link" href="/myprojects">{% trans "My Projects" %}</a>
 							</li>
 					<!--Login/signup views -->
 							{% elif user.type == "PROGRAM_DIRECTOR" %}
 							<li class="nav-item {% if request.path == "/approval/" %}active{% endif %}">
-								<a class="nav-link" href="/approval">Project Approval</a>
+								<a class="nav-link" href="/approval">{% trans "Project Approval" %}</a>
 							</li>
 							<li class="nav-item {% if request.path == "/" %}active{% endif %}">
-								<a class="nav-link" href="/">Posted Projects</a>
+								<a class="nav-link" href="/">{% trans "Posted Projects" %}</a>
 							</li>
 							<li class="nav-item {% if request.path == "/profprojectapplications/" %}active{% endif %}">
-								<a class="nav-link" href="/profprojectapplications">Project Applications</a>
+								<a class="nav-link" href="/profprojectapplications">{% trans "Project Applications" %}</a>
 							</li>
 							<li class="nav-item {% if request.path == "/profactiveprojects/" %}active{% endif %}">
-								<a class="nav-link" href="/profactiveprojects">My Current Projects</a>
+								<a class="nav-link" href="/profactiveprojects">{% trans "My Current Projects" %}</a>
 							</li>
 						{% else %} 
 
 							<li class="nav-item {% if request.path == "/" %}active{% endif %}">
-								<a class="nav-link" href="/">Posted Projects</a>
+								<a class="nav-link" href="/">{% trans "Posted Projects" %}</a>
 							</li>
 							<li class="nav-item {% if request.path == "/profprojectapplications/" %}active{% endif %}">
-								<a class="nav-link" href="/profprojectapplications">Project Applications</a>
+								<a class="nav-link" href="/profprojectapplications">{% trans "Project Applications" %}</a>
 							</li>
 							<li class="nav-item {% if request.path == "/profactiveprojects/" %}active{% endif %}">
-								<a class="nav-link" href="/profactiveprojects">My Current Projects</a>
+								<a class="nav-link" href="/profactiveprojects">{% trans "My Current Projects" %}</a>
 							</li>
 						{% endif %}
 
 					{% else %}
 					<li class="nav-item {% if request.path == "/" %}active{% endif %}">
-						<a class="nav-link" href="/">Find Projects</a>
+						<a class="nav-link" href="/">{% trans "Find Projects" %}</a>
 					</li>
 					{% endif %}
 
@@ -74,15 +76,47 @@
           		<div class="navbar-nav">
 						{% if user.is_authenticated %}
 							{% if user.type != "STUDENT" %}
-								<a class=" nav-item nav-link" href="{% url 'post-create' %}">Add Project</a>
+								<a class=" nav-item nav-link" href="{% url 'post-create' %}">{% trans "Add Project" %}</a>
 							{% endif %}
-							<a class=" nav-item nav-link" href="{% url 'profile' %}">Profile</a>
-							<a class="nav-item nav-link" href="{% url 'logout' %}">Log Out</a>
+
+							<!-- translation module -->
+							
+							<div class="nav-item nav-link">
+
+								<form action="{% url 'set_language' %}" method="post">
+									{% csrf_token %}
+									<input name="next" type="hidden" value="/" />
+							
+									<select class="form-select bg-transparent text-dark" name="language" style="width: auto;" onchange="this.form.submit()">
+									  {% get_current_language as LANGUAGE_CODE %}
+									  {% get_available_languages as LANGUAGES %}
+									  {% get_language_info_list for LANGUAGES as languages %}
+									  {% for language in languages %}
+							
+										  <option
+											value="{{ language.code }}"
+											{% if language.code == LANGUAGE_CODE %} selected="selected"{% endif %}
+											data-content=
+											<span style="display:inline-block; width:100px; padding-left: 10px; text-shadow:none">
+											  {{ language.name_local }}
+											</span>
+											
+										  </option>
+							
+									  {% endfor %}
+									</select>
+								</form>
+							
+							</div>
+
+
+							<a class="nav-item nav-link" href="{% url 'profile' %}">Profile</a>
+							<a class="nav-item nav-link" href="{% url 'logout' %}">{% trans "Log Out " %}</a>
 							
 
 						{% else %}
-							<a class="nav-item nav-link" href="{% url 'login' %}">Login</a>
-							<a class="nav-item nav-link" href="{% url 'register' %}">Sign Up</a>
+							<a class="nav-item nav-link" href="{% url 'login' %}">{% trans "Login" %}</a>
+							<a class="nav-item nav-link" href="{% url 'register' %}">{% trans "Sign Up" %}</a>
 
 						{% endif %}
 

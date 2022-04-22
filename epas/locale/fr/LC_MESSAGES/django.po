@@ -1,0 +1,281 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2022-04-21 23:00-0400\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+
+#: .\projectListing\templates\projectListing\application_confirm_delete.html:7
+#: .\projectListing\templates\projectListing\post_confirm_delete.html:7
+#: .\projectListing\templates\projectListing\post_detail.html:41
+#: .\projectListing\templates\projectListing\post_detail.html:52
+msgid "Delete Project"
+msgstr "Supprimer Projet"
+
+#: .\projectListing\templates\projectListing\application_confirm_delete.html:8
+#: .\projectListing\templates\projectListing\post_confirm_delete.html:8
+msgid "Are you sure you want to delete"
+msgstr "Êtes-vous certain de vouloir supprimer"
+
+#: .\projectListing\templates\projectListing\application_confirm_delete.html:11
+#: .\projectListing\templates\projectListing\application_form.html:12
+#: .\projectListing\templates\projectListing\post_confirm_delete.html:11
+#: .\projectListing\templates\projectListing\post_form.html:12
+msgid "Submit"
+msgstr "Envoyer"
+
+#: .\projectListing\templates\projectListing\application_confirm_delete.html:12
+#: .\projectListing\templates\projectListing\post_confirm_delete.html:12
+msgid "Cancel"
+msgstr "Annuler"
+
+#: .\projectListing\templates\projectListing\application_detail.html:7
+#: .\projectListing\templates\projectListing\prof_projectapplications.html:15
+msgid "Student Name:"
+msgstr "Nom de l'étudiant"
+
+#: .\projectListing\templates\projectListing\application_detail.html:11
+#: .\projectListing\templates\projectListing\application_detail.html:19
+msgid "Make Decision"
+msgstr "Faire la décision"
+
+#: .\projectListing\templates\projectListing\application_detail.html:15
+msgid "Delete Application"
+msgstr "Supprimer l'application"
+
+#: .\projectListing\templates\projectListing\application_form.html:8
+msgid "Application Post"
+msgstr "Fiche d'application"
+
+#: .\projectListing\templates\projectListing\applications.html:8
+msgid ""
+"You currently have no applications. Please see the list of projects to apply "
+"to"
+msgstr ""
+"Vous n'avez présentement aucune application. Veuillez voir la liste de "
+"projet à appliquer"
+
+#: .\projectListing\templates\projectListing\applications.html:8
+#: .\projectListing\templates\projectListing\myprojects.html:8
+#: .\projectListing\templates\projectListing\prof_myactiveprojects.html:7
+msgid "here"
+msgstr "ici"
+
+#: .\projectListing\templates\projectListing\applications.html:19
+#: .\projectListing\templates\projectListing\home.html:15
+#: .\projectListing\templates\projectListing\home.html:29
+#: .\projectListing\templates\projectListing\home.html:43
+#: .\projectListing\templates\projectListing\home.html:60
+#: .\projectListing\templates\projectListing\home_director.html:17
+#: .\projectListing\templates\projectListing\myprojects.html:17
+#: .\projectListing\templates\projectListing\post_detail.html:7
+#: .\projectListing\templates\projectListing\prof_myactiveprojects.html:14
+msgid "Supervised by: Professor"
+msgstr "Supervisé par: Professeur"
+
+#: .\projectListing\templates\projectListing\applications.html:23
+msgid "Approved"
+msgstr "Approuvé"
+
+#: .\projectListing\templates\projectListing\applications.html:25
+#: .\projectListing\templates\projectListing\prof_projectapplications.html:23
+msgid "Rejected"
+msgstr "Rejeté"
+
+#: .\projectListing\templates\projectListing\applications.html:27
+#: .\projectListing\templates\projectListing\prof_projectapplications.html:25
+msgid "Pending"
+msgstr "En Attente"
+
+#: .\projectListing\templates\projectListing\applications.html:32
+#: .\projectListing\templates\projectListing\prof_projectapplications.html:31
+msgid "View Application"
+msgstr "Voir l'application"
+
+#: .\projectListing\templates\projectListing\base.html:33
+#: .\projectListing\templates\projectListing\base.html:47
+#: .\projectListing\templates\projectListing\base.html:58
+msgid "Posted Projects"
+msgstr "Liste de projets"
+
+#: .\projectListing\templates\projectListing\base.html:36
+msgid "My Applications"
+msgstr "Mes applications"
+
+#: .\projectListing\templates\projectListing\base.html:39
+#: .\projectListing\templates\projectListing\myprojects.html:4
+#: .\projectListing\templates\projectListing\prof_myactiveprojects.html:5
+msgid "My Projects"
+msgstr "Mes Projets"
+
+#: .\projectListing\templates\projectListing\base.html:44
+msgid "Project Approval"
+msgstr "Approbation de projet"
+
+#: .\projectListing\templates\projectListing\base.html:50
+#: .\projectListing\templates\projectListing\base.html:61
+msgid "Project Applications"
+msgstr "Application de projet"
+
+#: .\projectListing\templates\projectListing\base.html:53
+#: .\projectListing\templates\projectListing\base.html:64
+msgid "My Current Projects"
+msgstr "Mes projets"
+
+#: .\projectListing\templates\projectListing\base.html:70
+msgid "Find Projects"
+msgstr "Trouvver un projet"
+
+#: .\projectListing\templates\projectListing\base.html:79
+msgid "Add Project"
+msgstr "Ajouter un projet"
+
+#: .\projectListing\templates\projectListing\base.html:114
+msgid "Log Out "
+msgstr "Se déconnecter"
+
+#: .\projectListing\templates\projectListing\base.html:118
+msgid "Login"
+msgstr "Se connecter"
+
+#: .\projectListing\templates\projectListing\base.html:119
+msgid "Sign Up"
+msgstr "S'enregistrer"
+
+#: .\projectListing\templates\projectListing\home.html:5
+msgid "List of Projects"
+msgstr "Liste de projets"
+
+#: .\projectListing\templates\projectListing\home.html:16
+#: .\projectListing\templates\projectListing\home.html:30
+#: .\projectListing\templates\projectListing\home.html:44
+#: .\projectListing\templates\projectListing\home.html:61
+#: .\projectListing\templates\projectListing\home_director.html:18
+#: .\projectListing\templates\projectListing\post_detail.html:8
+#: .\projectListing\templates\projectListing\prof_myactiveprojects.html:15
+msgid "Posted on:"
+msgstr "Affiché le:"
+
+#: .\projectListing\templates\projectListing\home.html:17
+#: .\projectListing\templates\projectListing\home.html:31
+#: .\projectListing\templates\projectListing\home.html:45
+#: .\projectListing\templates\projectListing\home.html:62
+#: .\projectListing\templates\projectListing\post_detail.html:9
+#: .\projectListing\templates\projectListing\prof_myactiveprojects.html:16
+msgid "Number of students:"
+msgstr "Nombre d'étudiants"
+
+#: .\projectListing\templates\projectListing\home.html:20
+msgid "Edit Application"
+msgstr "Modifier l'application"
+
+#: .\projectListing\templates\projectListing\home.html:34
+#: .\projectListing\templates\projectListing\home.html:50
+#: .\projectListing\templates\projectListing\home.html:65
+#: .\projectListing\templates\projectListing\prof_myactiveprojects.html:24
+msgid "View Project"
+msgstr "Voir le projet"
+
+#: .\projectListing\templates\projectListing\home.html:48
+msgid "Edit Project"
+msgstr "Modifier le projet"
+
+#: .\projectListing\templates\projectListing\home_director.html:4
+msgid "List of Projects Waiting for Approval"
+msgstr "Liste de projets en attente d'approbation"
+
+#: .\projectListing\templates\projectListing\home_director.html:7
+msgid "There are currently no projects pending your approval"
+msgstr "Il n'y a présentement aucun projet en attente d'approbation"
+
+#: .\projectListing\templates\projectListing\home_director.html:19
+msgid "Student Selected:"
+msgstr "Étudiant choisit:"
+
+#: .\projectListing\templates\projectListing\home_director.html:21
+#: .\projectListing\templates\projectListing\post_detail.html:55
+msgid "Approve Project"
+msgstr "Approuver le projet"
+
+#: .\projectListing\templates\projectListing\myprojects.html:7
+msgid "You are currently not assigned to any projects."
+msgstr "Vous êtes présentement assigné a aucun projet"
+
+#: .\projectListing\templates\projectListing\myprojects.html:8
+msgid "Please see list of projects to apply to"
+msgstr "Veuillez voir la liste de project a appliquer"
+
+#: .\projectListing\templates\projectListing\myprojects.html:8
+msgid ", or review your current applications"
+msgstr ", ou révisez votre application"
+
+#: .\projectListing\templates\projectListing\post_detail.html:27
+msgid "Apply"
+msgstr "Appliquer"
+
+#: .\projectListing\templates\projectListing\post_detail.html:38
+msgid "Download results in Excel"
+msgstr "Télécharger les résulats dans Excel"
+
+#: .\projectListing\templates\projectListing\post_detail.html:40
+#: .\projectListing\templates\projectListing\post_detail.html:51
+msgid "Update Project"
+msgstr "Mettre à jour"
+
+#: .\projectListing\templates\projectListing\post_detail.html:43
+#: .\projectListing\templates\projectListing\prof_myactiveprojects.html:26
+msgid "Mark Project as Complete"
+msgstr "Marquer le projet comme terminé"
+
+#: .\projectListing\templates\projectListing\post_detail.html:56
+msgid "Disapprove Project"
+msgstr "Désapprouver le projet"
+
+#: .\projectListing\templates\projectListing\post_form.html:8
+msgid "Project Post"
+msgstr "Fiche de projet"
+
+#: .\projectListing\templates\projectListing\prof_myactiveprojects.html:7
+msgid "You have not posted a project yet. Please click"
+msgstr "Vous n'avez pas posté de projet. Cliquez"
+
+#: .\projectListing\templates\projectListing\prof_myactiveprojects.html:7
+msgid "to add a project"
+msgstr "pour ajouter un projet"
+
+#: .\projectListing\templates\projectListing\prof_myactiveprojects.html:18
+msgid "Assigned student:"
+msgstr "Étudiant assigné:"
+
+#: .\projectListing\templates\projectListing\prof_myactiveprojects.html:18
+msgid "None"
+msgstr "Aucun"
+
+#: .\projectListing\templates\projectListing\prof_myactiveprojects.html:20
+msgid "Assigned Student:"
+msgstr "Étudiant assigné:"
+
+#: .\projectListing\templates\projectListing\prof_projectapplications.html:7
+msgid "No one has applied to your projects yet."
+msgstr "Personne n'as appliqué à votre projet"
+
+#: .\projectListing\templates\projectListing\prof_projectapplications.html:19
+msgid "Student:"
+msgstr "Étudiant:"
+
+#: .\projectListing\templates\projectListing\prof_projectapplications.html:21
+msgid "Accepted"
+msgstr "Accepté"

@@ -3,6 +3,8 @@ from . import views
 from users import views as user_views
 from .views import PostCreateView, PostListView, PostDetailView, PostUpdateView, PostUpdateView2, PostUpdateView3, PostDeleteView, ApplicationCreateView, ApplicationListView, ApplicationDetailView, ApplicationUpdateView, ApplicationDeleteView, UpdateApprovalView, UpdateStatusView, UpdateOfferView
 
+
+
 urlpatterns = [
     path('', views.home, name='projectListing-home'),
     path('profile/', user_views.profile, name='projectListing-profile'),
