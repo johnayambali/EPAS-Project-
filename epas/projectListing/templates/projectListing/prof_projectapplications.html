@@ -1,10 +1,11 @@
 {% extends "projectListing/base.html" %}
+{% load i18n %}
 {% block content %}
 <br>
     <h1>Applications</h1>
     <br><br>
     {% if appliedProject.count == 0 %}
-            <h3>No one has applied to your projects yet.</h3>
+            <h3>{% trans "No one has applied to your projects yet." %}</h3>
     {% endif %}
     <div class="card-deck">
         {% for post in appliedProject %}
@@ -12,23 +13,23 @@
                 <div class="card" style="min-width: 80%; max-width: 80%; margin-bottom: 2rem;"> 
                     <div class="card-body">
                         <h2 class="card-title">{{ post.project.title }}</h2>
-                        <h5 class="card-subtitle mb-2 text-muted">Student Name: {{ post.student.first_name}} {{ post.student.last_name}}</h3>
+                        <h5 class="card-subtitle mb-2 text-muted">{% trans "Student Name:" %} {{ post.student.first_name}} {{ post.student.last_name}}</h3>
                         {% if post.applicationStatus == "a"%}
                             <br><br>
                             <td>
-                                Student:
+                                {% trans "Student:" %}
                                 {% if post.offerStatus == "a" %}
-                                <button type="button" class="btn btn-outline-success">Accepted</button> 
+                                <button type="button" class="btn btn-outline-success">{% trans "Accepted" %}</button> 
                                 {% elif post.offerStatus == "r" %}
-                                <button type="button" class="btn btn-outline-danger">Rejected</button> 
+                                <button type="button" class="btn btn-outline-danger">{% trans "Rejected" %}</button> 
                                 {% else %}
-                                <button type="button" class="btn btn-outline-warning">Pending</button> 
+                                <button type="button" class="btn btn-outline-warning">{% trans "Pending" %}</button> 
                                 {% endif %}
                                 
                             </td>
                         {% else %}
                         <br>
-                        <a href="{% url 'application-detail' post.id %}" class="card-link">View Application</a>
+                        <a href="{% url 'application-detail' post.id %}" class="card-link">{% trans "View Application" %}</a>
                         {% endif %}
                     </div>
                 </div>

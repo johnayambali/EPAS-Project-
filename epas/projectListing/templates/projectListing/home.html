@@ -3,6 +3,8 @@
 {% block content %}
 <br>
     <h1>{% trans "List of Projects" %}</h1>    <br>
+
+
     <div class="card-deck">
         {% if user.type == "STUDENT" %}
             {% for post in application %} 
@@ -10,12 +12,12 @@
                 <div class="card" style="min-width: 80%; max-width: 80%; margin-bottom: 2rem;"> 
                     <div class="card-body">
                         <h2 class="card-title">{{ post.project.title }}</h2>
-                        <h5 class="card-subtitle mb-2 text-muted">Supervised by: Professor {{ post.project.professor.last_name }}</h3>
-                        <h6 class="card-subtitle mb-2 text-muted">Posted on: {{ post.project.date_posted }}</h3>
-                        <h6 class="card-subtitle mb-2 text-muted">Number of students: {{ post.project.desiredNumStudents}}</h3>
+                        <h5 class="card-subtitle mb-2 text-muted">{% trans "Supervised by: Professor" %} {{ post.project.professor.last_name }}</h3>
+                        <h6 class="card-subtitle mb-2 text-muted">{% trans "Posted on:" %} {{ post.project.date_posted }}</h3>
+                        <h6 class="card-subtitle mb-2 text-muted">{% trans "Number of students:" %} {{ post.project.desiredNumStudents}}</h3>
                         <p class="card-text">{{ post.project.description }}</p>
 
-                        <a href="{% url 'application-detail' post.id %}" class="card-link">Edit Application</a>
+                        <a href="{% url 'application-detail' post.id %}" class="card-link">{% trans "Edit Application" %}</a>
                     </div>
                 </div>
             {% endfor %}
@@ -24,12 +26,12 @@
                 <div class="card" style="min-width: 80%; max-width: 80%; margin-bottom: 2rem;"> 
                     <div class="card-body">
                         <h2 class="card-title">{{ post.title }}</h2>
-                        <h5 class="card-subtitle mb-2 text-muted">Supervised by: Professor {{ post.professor.last_name }}</h3>
-                        <h6 class="card-subtitle mb-2 text-muted">Posted on: {{ post.date_posted }}</h3>
-                        <h6 class="card-subtitle mb-2 text-muted">Number of students: {{ post.desiredNumStudents}}</h3>
+                        <h5 class="card-subtitle mb-2 text-muted">{% trans "Supervised by: Professor" %} {{ post.professor.last_name }}</h3>
+                        <h6 class="card-subtitle mb-2 text-muted">{% trans "Posted on:" %} {{ post.date_posted }}</h3>
+                        <h6 class="card-subtitle mb-2 text-muted">{% trans "Number of students:" %} {{ post.desiredNumStudents}}</h3>
                         <p class="card-text">{{ post.description }}</p>
 
-                        <a href="{% url 'post-detail' post.id %}" class="card-link">View Project</a>
+                        <a href="{% url 'post-detail' post.id %}" class="card-link">{% trans "View Project" %}</a>
                     </div>
                 </div>
             {% endfor %}
@@ -38,14 +40,14 @@
                 <div class="card" style="min-width: 80%; max-width: 80%; margin-bottom: 2rem;"> 
                     <div class="card-body">
                         <h2 class="card-title">{{ post.title }}</h2>
-                        <h5 class="card-subtitle mb-2 text-muted">Supervised by: Professor {{ post.professor.last_name }}</h3>
-                        <h6 class="card-subtitle mb-2 text-muted">Posted on: {{ post.date_posted }}</h3>
-                        <h6 class="card-subtitle mb-2 text-muted">Number of students: {{ post.desiredNumStudents}}</h3>
+                        <h5 class="card-subtitle mb-2 text-muted">{% trans "Supervised by: Professor" %} {{ post.professor.last_name }}</h3>
+                        <h6 class="card-subtitle mb-2 text-muted">{% trans "Posted on:" %} {{ post.date_posted }}</h3>
+                        <h6 class="card-subtitle mb-2 text-muted">{% trans "Number of students:" %}{{ post.desiredNumStudents}}</h3>
                         <p class="card-text">{{ post.description }}</p>
                         {% if user.username == post.professor.username %}
-                        <a href="{% url 'post-detail' post.id %}" class="card-link">Edit Project</a>
+                        <a href="{% url 'post-detail' post.id %}" class="card-link">{% trans "Edit Project" %}</a>
                         {%else%}
-                        <a href="{% url 'post-detail' post.id %}" class="card-link">View Project</a>
+                        <a href="{% url 'post-detail' post.id %}" class="card-link">{% trans "View Project" %}</a>
                         {%endif%}
                     </div>
                 </div>
@@ -55,12 +57,12 @@
                 <div class="card" style="min-width: 80%; max-width: 80%; margin-bottom: 2rem;"> 
                     <div class="card-body">
                         <h2 class="card-title">{{ post.title }}</h2>
-                        <h5 class="card-subtitle mb-2 text-muted">Supervised by: Professor {{ post.professor.last_name }}</h3>
-                        <h6 class="card-subtitle mb-2 text-muted">Posted on: {{ post.date_posted }}</h3>
-                        <h6 class="card-subtitle mb-2 text-muted">Number of students: {{ post.desiredNumStudents}}</h3>
+                        <h5 class="card-subtitle mb-2 text-muted">{% trans "Supervised by: Professor" %} {{ post.professor.last_name }}</h3>
+                        <h6 class="card-subtitle mb-2 text-muted">{% trans "Posted on:" %} {{ post.date_posted }}</h3>
+                        <h6 class="card-subtitle mb-2 text-muted">{% trans "Number of students:" %} {{ post.desiredNumStudents}}</h3>
                         <p class="card-text">{{ post.description }}</p>
 
-                        <a href="{% url 'post-detail' post.id %}" class="card-link">View Project</a>
+                        <a href="{% url 'post-detail' post.id %}" class="card-link">{% trans "View Project" %}</a>
                     </div>
                 </div>
             {% endfor %}
