@@ -13,6 +13,7 @@ from users.views import profile
 class TestUrls(SimpleTestCase):
     #done for all the urls
 
+    #Tests for posts urls
     def test_home_url_resolves(self):
         url = reverse('projectListing-home')
         self.assertEquals(resolve(url).func, home)
@@ -34,6 +35,9 @@ class TestUrls(SimpleTestCase):
         url = reverse('projectListing-applications')
         self.assertEquals(resolve(url).func, applications)
 
+
+
+    #Tests for Posts urls
     def test_postcreate_url_resolves(self):
         url = reverse('post-create')
         self.assertEquals(resolve(url).func.view_class, PostCreateView)
@@ -54,6 +58,7 @@ class TestUrls(SimpleTestCase):
         url = reverse('post-approval', args=[2320])
         self.assertEquals(resolve(url).func.view_class, UpdateApprovalView)
 
+    #Tests for Application urls
     def test_appcreate_url_resolves(self):
         url = reverse('application-create', args=[2320])
         self.assertEquals(resolve(url).func.view_class, ApplicationCreateView)
@@ -78,10 +83,6 @@ class TestUrls(SimpleTestCase):
         url = reverse('application-offer', args=[2520])
         self.assertEquals(resolve(url).func.view_class, UpdateOfferView)
 
-    def test_profmyproj_url_resolves(self):
-        url = reverse('projectListing-prof_myprojects')
-        self.assertEquals(resolve(url).func, profmyprojects)
-
     def test_profprojapp_url_resolves(self):
         url = reverse('projectListing-prof_projectapplication')
         self.assertEquals(resolve(url).func, profprojectapplications)
@@ -90,7 +91,5 @@ class TestUrls(SimpleTestCase):
         url = reverse('projectListing-prof_myactiveprojects')
         self.assertEquals(resolve(url).func, profmyactiveprojects)
 
-    def test_profprofile_url_resolves(self):
-        url = reverse('projectListing-prof_profile')
-        self.assertEquals(resolve(url).func, profprofile)
+
 
