@@ -16,7 +16,7 @@ from django.shortcuts import redirect
 def home(request):
     if request.user.is_anonymous:
         context = {
-            'postedProject': Post.objects.all(),
+            'postedProject': Post.objects.filter(student=None),
             'appliedProject': Application.objects.all()
         }
         return render(request, 'projectListing/home.html', context)
@@ -47,7 +47,7 @@ def home(request):
 
     else:
         context = {
-            'postedProject': Post.objects.all(),
+            'postedProject': Post.objects.filter(student=None),
             'appliedProject': Application.objects.all()
         }
         return render(request, 'projectListing/home.html', context)
@@ -138,7 +138,7 @@ class PostDetailView(DetailView):
 
 class PostCreateView(CreateView):
     model = Post
-    fields = ['title', 'description', 'date_posted', 'desiredNumStudents', 'maxNumStudents', 'minTermLength', 'maxTermLength', 'relatedProgram', 'course', 'active']
+    fields = ['title', 'description', 'desiredNumStudents', 'maxNumStudents', 'minTermLength', 'maxTermLength', 'course']
 
 
     def form_valid(self, form):
@@ -148,7 +148,7 @@ class PostCreateView(CreateView):
 
 class PostUpdateView(UserPassesTestMixin, UpdateView):
     model = Post
-    fields = ['title', 'description', 'date_posted', 'desiredNumStudents', 'maxNumStudents', 'minTermLength', 'maxTermLength', 'relatedProgram', 'course', 'active']
+    fields = ['title', 'description', 'desiredNumStudents', 'maxNumStudents', 'minTermLength', 'maxTermLength', 'course']
 
     def form_valid(self, form):
         if self.request.user.type == "PROGRAM_DIRECTOR":

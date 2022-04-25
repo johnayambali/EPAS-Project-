@@ -121,14 +121,14 @@ class Post(models.Model):
     maxNumStudents = models.IntegerField(verbose_name='Max number of students:')
     minTermLength = models.IntegerField(verbose_name='Min number of months:')
     maxTermLength = models.IntegerField(verbose_name='Max number of months:')
-    relatedProgram = models.CharField(max_length=100, verbose_name='Program:')
+    relatedProgram = models.CharField(max_length=100, blank=True, default="null", verbose_name='Program:')
     course = models.CharField(
                 max_length=100,
                 choices=courses,
                 blank=True,
                 default="null",
                 verbose_name='Course:')
-    active = models.BooleanField(default=False, verbose_name='Active')
+    active = models.BooleanField(default=True, verbose_name='Active')
     isApproved = models.BooleanField(default=False, verbose_name='Approve?')
     completed = models.BooleanField(default=False, verbose_name='Mark as complete?')
     def __str__(self):
