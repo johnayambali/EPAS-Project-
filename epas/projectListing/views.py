@@ -231,16 +231,16 @@ class ApplicationCreateView(CreateView):
         return super().form_valid(form)
 
 class ApplicationUpdateView(UserPassesTestMixin, UpdateView):
-    model = Post
-    fields = ['status']
+    model = Application
+    fields = ['appDetails']
 
     def form_valid(self, form):
-        form.instance.professor = self.request.user
+        form.instance.student = self.request.user
         return super().form_valid(form)
 
     def test_func(self):
         post = self.get_object()
-        if self.request.user == post.professor:
+        if self.request.user == post.student:
             return True
         return False
 
@@ -253,20 +253,6 @@ class ApplicationDeleteView(UserPassesTestMixin, DeleteView):
         if self.request.user == post.student:
             return True
         return False
-
-class UpdateApprovalView(UserPassesTestMixin, UpdateView):
-    model = Post
-    fields = ['isApproved']
-
-    def form_valid(self, form):
-        return super().form_valid(form)
-
-    def test_func(self):
-        post = self.get_object()
-        if self.request.user == post.professor or self.request.user.type == "PROGRAM_DIRECTOR":
-            return True
-        return False
-
 
 
 class UpdateStatusView(UserPassesTestMixin, UpdateView):

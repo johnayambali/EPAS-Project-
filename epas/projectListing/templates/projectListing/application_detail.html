@@ -14,6 +14,7 @@
 
                         {% else %}
                         <a class="btn btn-danger btn-sm mt-1 mb-1" href="{% url 'application-delete' object.id %}">{% trans "Delete Application" %}</a>
+                        <a class="btn btn-outline-info btn-sm mt-1 mb-1" href="{% url 'application-update' object.id %}">{% trans "Update Application" %}</a>
                         {% endif %}
                     {% endif %}
                     {% if user.username == object.professor.username %}

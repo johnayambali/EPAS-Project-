@@ -1,7 +1,7 @@
 from django.urls import path
 from . import views
 from users import views as user_views
-from .views import PostCreateView, PostListView, PostDetailView, PostUpdateView, PostUpdateView2, PostUpdateView3, PostDeleteView, ApplicationCreateView, ApplicationListView, ApplicationDetailView, ApplicationUpdateView, ApplicationDeleteView, UpdateApprovalView, UpdateStatusView, UpdateOfferView
+from .views import PostCreateView, PostListView, PostDetailView, PostUpdateView, PostUpdateView2, PostUpdateView3, PostDeleteView, ApplicationCreateView, ApplicationListView, ApplicationDetailView, ApplicationUpdateView, ApplicationDeleteView, UpdateStatusView, UpdateOfferView
 
 
 
@@ -20,7 +20,6 @@ urlpatterns = [
     path('post/<int:pk>/apply', ApplicationCreateView.as_view(), name='application-create'),
     path('application/<int:pk>/', ApplicationDetailView.as_view(), name='application-detail'),
     path('application/<int:pk>/update', ApplicationUpdateView.as_view(), name='application-update'),
-    path('post/<int:pk>/approval', UpdateApprovalView.as_view(), name='post-approval'),
     path('application/<int:pk>/status', UpdateStatusView.as_view(), name='application-status'),
     path('application/<int:pk>/offer', UpdateOfferView.as_view(), name='application-offer'),
     path('application/<int:pk>/delete', ApplicationDeleteView.as_view(), name='application-delete'),

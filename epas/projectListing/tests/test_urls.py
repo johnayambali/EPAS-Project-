@@ -54,10 +54,6 @@ class TestUrls(SimpleTestCase):
         url = reverse('post-delete', args=[2026])
         self.assertEquals(resolve(url).func.view_class, PostDeleteView)
 
-    def test_postapproval_url_resolves(self):
-        url = reverse('post-approval', args=[2320])
-        self.assertEquals(resolve(url).func.view_class, UpdateApprovalView)
-
     #Tests for Application urls
     def test_appcreate_url_resolves(self):
         url = reverse('application-create', args=[2320])
