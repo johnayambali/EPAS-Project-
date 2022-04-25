@@ -82,7 +82,7 @@ def applications(request):
 
 
 def profmyactiveprojects(request):
-    projects = Post.objects.filter(professor=request.user)
+    projects = Post.objects.filter(professor=request.user, completed=False)
     
     context = {
         'postedProject': projects

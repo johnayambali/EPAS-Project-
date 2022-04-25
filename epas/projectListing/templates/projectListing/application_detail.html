@@ -17,7 +17,7 @@
                         <a class="btn btn-outline-info btn-sm mt-1 mb-1" href="{% url 'application-update' object.id %}">{% trans "Update Application" %}</a>
                         {% endif %}
                     {% endif %}
-                    {% if user.username == object.professor.username %}
+                    {% if user.type == "PROFESSOR" %}
                     <a class="btn btn-secondary btn-sm mt-1 mb-1" href="{% url 'application-status' object.id %}">{% trans "Make Decision" %} </a>
                     {% endif %}
                 </div>
