@@ -96,36 +96,6 @@ def profprojectapplications(request):
     }
     return render(request, 'projectListing/prof_projectapplications.html', context)
 
-def createapplication(request):
-    if request.method=='POST':
-        if request.POST.get('student') and request.POST.get('project') and request.POST.get('id') and request.POST.get('appDetails'):
-            post=Application()
-            post.student = request.POST.get('student')
-            post.project = request.POST.get('project')
-            post.projectID = request.POST.get('projectID')
-            post.appDetails = request.POST.get('appDetails')  
-            post.save()
-
-            return render(request, 'projectListing/home.html')
-        else:
-            return render(request, 'projectListing/home.html' )
-
-def createapplication2(request):
-    if request.method=='POST':
-        if request.POST.get('student') and request.POST.get('project') and request.POST.get('id') and request.POST.get('appDetails'):
-            post=Application()
-            post.student = request.POST.get('student')
-            post.project = request.POST.get('project')
-            post.projectID = request.POST.get('projectID')
-            post.appDetails = request.POST.get('appDetails')  
-            post.save()
-
-            return render(request, 'projectListing/home.html')
-        else:
-            return render(request, 'projectListing/home.html' )
-
-
- 
 class PostListView(ListView):
     model = Post
     template_name = 'projectListing/home.html'
