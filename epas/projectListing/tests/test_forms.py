@@ -36,4 +36,4 @@ class TestForms(TestCase):
         form = PostForm(data={})
 
         self.assertFalse(form.is_valid())
-        self.assertEquals(len(form.errors), 10)
+        self.assertEquals(len(form.errors), 8)
